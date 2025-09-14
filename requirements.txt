@@ -1,0 +1,12 @@
+Django
+gunicorn
+whitenoise
+psycopg2-binary
+django-cors-headers
+djangorestframework
+faiss-cpu
+sentence-transformers
+pandas
+numpy
+torch
+transformers

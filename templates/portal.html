@@ -1,0 +1,597 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Internship Recommendation Portal</title>
+    <link rel="stylesheet" href="{% static 'css/portal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/transition.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="loader">
+          <div class="bar1"></div>
+          <div class="bar2"></div>
+          <div class="bar3"></div>
+          <div class="bar4"></div>
+          <div class="bar5"></div>
+          <div class="bar6"></div>
+        </div>
+
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <h1 data-translate-key="portal_subtitle">Prime Minister Internship Scheme</h1>
+                </div>
+                <div class="header-right">
+                    <nav class="main-nav">
+                        <a href="{% url 'home' %}" class="nav-link" data-translate-key="nav_home">Home</a>
+                        <a href="{% url 'portal' %}" class="nav-link active" data-translate-key="nav_find">Find Internships</a>
+                    </nav>
+                    <div class="language-selector" id="languageSelector">
+                        <div class="current-language">
+                            <span id="currentLangText">English</span>
+                            <span class="arrow-down">▼</span>
+                        </div>
+                        <ul class="language-dropdown" id="languageDropdown">
+                            <li><a href="#" data-lang="en">English</a></li>
+                            <li><a href="#" data-lang="hi">हिन्दी</a></li>
+                            <li><a href="#" data-lang="mr">मराठी</a></li>
+                            <li><a href="#" data-lang="ta">தமிழ்</a></li>
+                            <li><a href="#" data-lang="te">తెలుగు</a></li>
+                            <li><a href="#" data-lang="ml">മലയാളം</a></li>
+                            <li><a href="#" data-lang="kn">ಕನ್ನಡ</a></li>
+                            <li><a href="#" data-lang="bn">বাংলা</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="portal-container">
+            <main class="recommendation-container">
+                <ul class="progress-indicator">
+                    <li id="progress-domains" data-translate-key="progress_domains">Skills</li>
+                    <li id="progress-description" data-translate-key="progress_description">Description</li>
+                    <li id="progress-location" data-translate-key="progress_location">Location</li>
+                </ul>
+
+                <h2 class="container-title" data-translate-key="form_title">Find Your Ideal Internship</h2>
+
+                <div class="filter-section" data-category="domains">
+                    <h3 data-translate-key="skills_title">Select Your Skills</h3>
+                    <div class="custom-dropdown-wrapper">
+                        <div class="custom-dropdown-header" id="customDropdownHeader">
+                            <span id="customDropdownPlaceholder" data-translate-key="skills_placeholder">Select a skill from the list...</span>
+                        </div>
+                        <div class="custom-dropdown-list-container" id="customDropdownListContainer">
+                            <ul class="custom-dropdown-list">
+                                <li data-value="Python">Python</li>
+                                <li data-value="Data Science">Data Science</li>
+                                <li data-value="Data Analytics">Data Analytics</li>
+                                <li data-value="Machine Learning">Machine Learning</li>
+                                <li data-value="Artificial Intelligence">Artificial Intelligence</li>
+                                <li data-value="Cyber Security">Cyber Security</li>
+                                <li data-value="Cloud Computing">Cloud Computing</li>
+                                <li data-value="Video Editing">Video Editing</li>
+                                <li data-value="UI/UX Design">UI/UX Design</li>
+                                <li data-value="Web Development">Web Development</li>
+                                <li data-value="Mobile App Development">Mobile App Development</li>
+                                <li data-value="Blockchain">Blockchain</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <textarea id="customSkillInput" class="custom-skill-textarea" placeholder="...or type other skills here and press Enter"></textarea>
+                    <div class="selected-skills-container" id="selectedSkillsContainer"></div>
+                </div>
+
+                <div class="filter-section" data-category="description">
+                    <h3 data-translate-key="description_title">Describe Your Ideal Internship (Optional)</h3>
+                    <textarea id="descriptionInput" class="custom-skill-textarea" data-translate-key="description_placeholder" placeholder="e.g., 'A role focused on sustainable energy policy research'"></textarea>
+                </div>
+
+
+                <div class="filter-section" data-category="location">
+                    <h3 data-translate-key="location_title">Location</h3>
+                    <select id="locationDropdown" class="form-dropdown">
+                        <option value="" data-translate-key="location_placeholder">Select a city...</option>
+                        <option value="Work From Home" data-translate-key="city_Work_From_Home">Work From Home</option>
+                        <option value="Bengaluru" data-translate-key="city_bengaluru">Bengaluru</option>
+                        <option value="Chennai" data-translate-key="city_chennai">Chennai</option>
+                        <option value="Delhi" data-translate-key="city_delhi">Delhi</option>
+                        <option value="Hyderabad" data-translate-key="city_hyderabad">Hyderabad</option>
+                        <option value="Jaipur" data-translate-key="city_jaipur">Jaipur</option>
+                        <option value="Kolkata" data-translate-key="city_kolkata">Kolkata</option>
+                        <option value="Mumbai" data-translate-key="city_mumbai">Mumbai</option>
+                        <option value="Pune" data-translate-key="city_pune">Pune</option>
+                        <option value="Visakhapatnam" data-translate-key="city_vizag">Visakhapatnam</option>
+                    </select>
+                </div>
+
+                <div class="action-buttons">
+                     <button class="recommend-btn" id="recommendBtn" disabled data-translate-key="recommend_btn">Find Internships</button>
+                </div>
+            </main>
+
+            <section class="results-section" id="resultsSection"></section>
+        </div>
+
+        <div class="modal-overlay" id="analyticsModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+                <div class="modal-body" id="modalBody">
+                    </div>
+            </div>
+        </div>
+
+        <div class="chatbot-widget">
+            <div class="chat-icon" id="chatIcon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            </div>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <h3>Internship Assistant</h3>
+                    <button id="closeChatBtn">&times;</button>
+                </div>
+                <div class="chat-body" id="chatBody">
+                    <div class="chat-message bot">
+                        <p>Hello! How can I help you with the internship program today?</p>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <input type="text" id="chatInput" placeholder="Ask a question...">
+                    <button id="sendChatBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="email-widget">
+            <button id="openEmailModalBtn">Get Internship List</button>
+        </div>
+
+        <div class="modal-overlay" id="emailModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeEmailModalBtn">&times;</button>
+                <div class="modal-body" id="emailModalBody">
+                    <h3>Get Your Prep Kit!</h3>
+                    <p>Enter your email to receive a free interview preparation kit, including sample questions and tips.</p>
+                    <form id="emailForm">
+                        <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                        <button type="submit" id="submitEmailBtn">Send Kit</button>
+                        <p id="emailError" class="error-message"></p>
+                    </form>
+                    <div id="emailSuccess" class="success-message">
+                        <p>Thank you! Your prep kit is on its way to your inbox.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="transition-overlay animate-in"></div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainHeader = document.querySelector('.main-header');
+            let lastScrollTop = 0;
+
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    mainHeader.classList.add('hidden');
+                } else {
+                    mainHeader.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            }, false);
+
+            const recommendBtn = document.getElementById('recommendBtn');
+            const resultsSection = document.getElementById('resultsSection');
+            const selectedSkillsContainer = document.getElementById('selectedSkillsContainer');
+
+            const customDropdownHeader = document.getElementById('customDropdownHeader');
+            const customDropdownListContainer = document.getElementById('customDropdownListContainer');
+            const customDropdownPlaceholder = document.getElementById('customDropdownPlaceholder');
+            const customSkillInput = document.getElementById('customSkillInput');
+            const descriptionInput = document.getElementById('descriptionInput');
+            const locationDropdown = document.getElementById('locationDropdown');
+
+            const analyticsModal = document.getElementById('analyticsModal');
+            const modalBody = document.getElementById('modalBody');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            const chatIcon = document.getElementById('chatIcon');
+            const chatWindow = document.getElementById('chatWindow');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+            const chatBody = document.getElementById('chatBody');
+            const chatInput = document.getElementById('chatInput');
+            const sendChatBtn = document.getElementById('sendChatBtn');
+
+            const openEmailModalBtn = document.getElementById('openEmailModalBtn');
+            const emailModal = document.getElementById('emailModal');
+            const closeEmailModalBtn = document.getElementById('closeEmailModalBtn');
+            const emailForm = document.getElementById('emailForm');
+            const emailInput = document.getElementById('emailInput');
+            const emailError = document.getElementById('emailError');
+            const emailSuccess = document.getElementById('emailSuccess');
+            const submitEmailBtn = document.getElementById('submitEmailBtn');
+
+            const progressIndicators = {
+                domains: document.getElementById('progress-domains'),
+                description: document.getElementById('progress-description'),
+                location: document.getElementById('progress-location'),
+            };
+
+            const userSelections = {
+                domains: new Set(),
+                description: null,
+                location: null,
+            };
+
+            const translations = {
+                en: { portal_subtitle: "Prime Minister's Internship Scheme", nav_home: "Home", nav_find: "Find Internships", progress_domains: "Skills", progress_description: "Description", progress_location: "Location", form_title: "Find Your Ideal Internship", skills_title: "Select Your Skills", skills_placeholder: "Select a skill from the list...", skills_add_more: "Add more?", description_title: "Describe Your Ideal Internship (Optional)", description_placeholder: "e.g., 'A role focused on sustainable energy policy research'", location_title: "Location", location_placeholder: "Select a city...", recommend_btn: "Find Internships", results_title: "Recommended Opportunities", show_desc_btn: "Get Analytics", card_location: "Location", card_mode: "Mode", stipend: "Stipend", about_company: "About the Ministry/Department", skills_required: "Skills Required", finding_match: "Finding your perfect match...", city_remote: "Remote", city_bengaluru: "Bengaluru", city_chennai: "Chennai", city_delhi: "Delhi", city_hyderabad: "Hyderabad", city_jaipur: "Jaipur", city_kolkata: "Kolkata", city_mumbai: "Mumbai", city_pune: "Pune", city_vizag: "Visakhapatnam" },
+                hi: { portal_subtitle: "प्रधानमंत्री इंटर्नशिप योजना", nav_home: "होम", nav_find: "इंटर्नशिप खोजें", progress_domains: "कौशल", progress_description: "विवरण", progress_location: "स्थान", form_title: " अपनी आदर्श इंटर्नशिप खोजें", skills_title: "अपने कौशल चुनें", skills_placeholder: "सूची में से एक कौशल चुनें...", skills_add_more: "और जोड़ें?", description_title: "अपनी आदर्श इंटर्नशिप का वर्णन करें (वैकल्पिक)", description_placeholder: "जैसे, 'टिकाऊ ऊर्जा नीति अनुसंधान पर केंद्रित एक भूमिका'", location_title: "स्थान", location_placeholder: "एक शहर चुनें...", recommend_btn: "इंटर्नशिप खोजें", results_title: "अनुशंसित अवसर", show_desc_btn: "विश्लेषण प्राप्त करें", card_location: "स्थान", card_mode: "मोड", stipend: "वजीफा", about_company: "मंत्रालय/विभाग के बारे में", skills_required: "आवश्यक कौशल", finding_match: "आपके लिए सही मैच ढूंढ रहा है...", city_remote: "रिमोट", city_bengaluru: "बेंगलुरु", city_chennai: "चेन्नई", city_delhi: "दिल्ली", city_hyderabad: "हैदराबाद", city_jaipur: "जयपुर", city_kolkata: "कोलकाता", city_mumbai: "मुंबई", city_pune: "पुणे", city_vizag: "विशाखापत्तनम" },
+                mr: { portal_subtitle: "प्रधानमंत्री इंटर्नशिप योजना", nav_home: "मुख्यपृष्ठ", nav_find: "इंटर्नशिप शोधा", progress_domains: "कौशल्ये", progress_description: "वर्णन", progress_location: "स्थान", form_title: "तुमची आदर्श इंटर्नशिप शोधा", skills_title: "तुमची कौशल्ये निवडा", skills_placeholder: "सूचीमधून एक कौशल्य निवडा...", skills_add_more: "आणखी जोडा?", description_title: "तुमच्या आदर्श इंटर्नशिपचे वर्णन करा (ऐच्छिक)", description_placeholder: "उदा. 'शाश्वत ऊर्जा धोरण संशोधनावर केंद्रित भूमिका'", location_title: "स्थान", location_placeholder: "एक शहर निवडा...", recommend_btn: "इंटर्नशिप शोधा", results_title: "शिफारस केलेल्या संधी", show_desc_btn: "विश्लेषण मिळवा", card_location: "स्थान", card_mode: "मोड", stipend: "विद्यावेतन", about_company: "मंत्रालय/विभागाबद्दल", skills_required: "आवश्यक कौशल्ये", finding_match: "तुमच्यासाठी योग्य जुळणी शोधत आहे...", city_remote: "रिमोट", city_bengaluru: "बंगळूरु", city_chennai: "चेन्नई", city_delhi: "दिल्ली", city_hyderabad: "हैदराबाद", city_jaipur: "जयपूर", city_kolkata: "कोलकाता", city_mumbai: "मुंबई", city_pune: "पुणे", city_vizag: "विशाखापट्टणम" },
+                ta: { portal_subtitle: "பிரதமர் இன்டர்ன்ஷிப் திட்டம்", nav_home: "முகப்பு", nav_find: "பயிற்சிகளைக் கண்டறியவும்", progress_domains: "திறன்கள்", progress_description: "விளக்கம்", progress_location: "இடம்", form_title: "உங்கள் சிறந்த பயிற்சியைத் தேடுங்கள்", skills_title: "உங்கள் திறன்களைத் தேர்ந்தெடுக்கவும்", skills_placeholder: "பட்டியலில் இருந்து ஒரு திறமையைத் தேர்ந்தெடுக்கவும்...", skills_add_more: "மேலும் சேர்க்கவா?", description_title: "உங்கள் சிறந்த பயிற்சியை விவரிக்கவும் (விருப்பத்தேர்வு)", description_placeholder: "எ.கா., 'நிலையான எரிசக்தி கொள்கை ஆராய்ச்சியில் கவனம் செலுத்தும் ஒரு பாத்திரம்'", location_title: "இடம்", location_placeholder: "ஒரு நகரத்தைத் தேர்ந்தெடுக்கவும்...", recommend_btn: "பயிற்சிகளைக் கண்டறியவும்", results_title: "பரிந்துரைக்கப்பட்ட வாய்ப்புகள்", show_desc_btn: "பகுப்பாய்வைப் பெறுங்கள்", card_location: "இடம்", card_mode: "முறை", stipend: "உதவித்தொகை", about_company: "அமைச்சகம்/துறை பற்றி", skills_required: "தேவையான திறன்கள்", finding_match: "உங்களுக்கான சரியான பொருத்தத்தைக் கண்டறிகிறது...", city_remote: "தொலைநிலை", city_bengaluru: "பெங்களூரு", city_chennai: "சென்னை", city_delhi: "டெல்லி", city_hyderabad: "ஹைதராபாத்", city_jaipur: "ஜெய்ப்பூர்", city_kolkata: "கொல்கத்தா", city_mumbai: "மும்பை", city_pune: "புனே", city_vizag: "விசாகப்பட்டினம்" },
+                te: { portal_subtitle: "ప్రధాన మంత్రి ఇంటర్న్‌షిప్ పథకం", nav_home: "హోమ్", nav_find: "ఇంటర్న్‌షిప్‌లను కనుగొనండి", progress_domains: "నైపుణ్యాలు", progress_description: "వివరణ", progress_location: "ప్రదేశం", form_title: "మీ ఆదర్శ ఇంటర్న్‌షిప్‌ను కనుగొనండి", skills_title: "మీ నైపుణ్యాలను ఎంచుకోండి", skills_placeholder: "జాబితా నుండి ఒక నైపుణ్యాన్ని ఎంచుకోండి...", skills_add_more: "మరిన్ని జోడించాలా?", description_title: "మీ ఆదర్శ ఇంటర్న్‌షిప్ గురించి వివరించండి (ఐచ్ఛికం)", description_placeholder: "ఉదా., 'స్థిరమైన ఇంధన విధాన పరిశోధనపై దృష్టి సారించిన పాత్ర'", location_title: "ప్రదేశం", location_placeholder: "ఒక నగరాన్ని ఎంచుకోండి...", recommend_btn: "ఇంటర్న్‌షిప్‌లను కనుగొనండి", results_title: "సిఫార్సు చేయబడిన అవకాశాలు", show_desc_btn: "విశ్లేషణలను పొందండి", card_location: "ప్రదేశం", card_mode: "విధానం", stipend: "స్టైఫండ్", about_company: "మంత్రిత్వ శాఖ/విభాగం గురించి", skills_required: "అవసరమైన నైపుణ్యాలు", finding_match: "మీకు సరైన సరిపోలికను కనుగొనడం...", city_remote: "రిమోట్", city_bengaluru: "బెంగళూరు", city_chennai: "చెన్నై", city_delhi: "ఢిల్లీ", city_hyderabad: "హైదరాబాద్", city_jaipur: "జైపూర్", city_kolkata: "కోల్‌కతా", city_mumbai: "ముంబై", city_pune: "పుణె", city_vizag: "విశాఖపట్నం" },
+                ml: { portal_subtitle: "പ്രധാനമന്ത്രി ഇന്റേൺഷിപ്പ് സ്കീം", nav_home: "ഹോം", nav_find: "ഇന്റേൺഷിപ്പുകൾ കണ്ടെത്തുക", progress_domains: "കഴിവുകൾ", progress_description: "വിവരണം", progress_location: "സ്ഥലം", form_title: "നിങ്ങളുടെ അനുയോജ്യമായ ഇന്റേൺഷിപ്പ് കണ്ടെത്തുക", skills_title: "നിങ്ങളുടെ കഴിവുകൾ തിരഞ്ഞെടുക്കുക", skills_placeholder: "ലിസ്റ്റിൽ നിന്ന് ഒരു കഴിവ് തിരഞ്ഞെടുക്കുക...", skills_add_more: "കൂടുതൽ ചേർക്കണോ?", description_title: "നിങ്ങളുടെ അനുയോജ്യമായ ഇന്റേൺഷിപ്പ് വിവരിക്കുക (ഓപ്ഷണൽ)", description_placeholder: "ഉദാ. 'സുസ്ഥിര ഊർജ്ജ നയ ഗവേഷണത്തിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്ന ഒരു പങ്ക്'", location_title: "സ്ഥലം", location_placeholder: "ഒരു നഗരം തിരഞ്ഞെടുക്കുക...", recommend_btn: "ഇന്റേൺഷിപ്പുകൾ കണ്ടെത്തുക", results_title: "ശുപാർശ ചെയ്യപ്പെട്ട അവസരങ്ങൾ", show_desc_btn: "അനലിറ്റിക്സ് നേടുക", card_location: "സ്ഥലം", card_mode: "രീതി", stipend: "സ്റ്റൈപ്പൻഡ്", about_company: "മന്ത്രാലയം/വകുപ്പിനെക്കുറിച്ച്", skills_required: "ആവശ്യമായ കഴിവുകൾ", finding_match: "നിങ്ങൾക്ക് അനുയോജ്യമായത് കണ്ടെത്തുന്നു...", city_remote: "റിമോട്ട്", city_bengaluru: "ബെംഗളൂരു", city_chennai: "ചെന്നൈ", city_delhi: "ഡൽഹി", city_hyderabad: "ഹൈദരാബാദ്", city_jaipur: "ജയ്പൂർ", city_kolkata: "കൊൽക്കത്ത", city_mumbai: "മുംബൈ", city_pune: "പൂനെ", city_vizag: "വിശാഖപട്ടണം" },
+                kn: { portal_subtitle: "ಪ್ರಧಾನ ಮಂತ್ರಿ ಇಂಟರ್ನ್‌ಶಿಪ್ ಯೋಜನೆ", nav_home: "ಮುಖಪುಟ", nav_find: "ಇಂಟರ್ನ್‌ಶಿಪ್‌ಗಳನ್ನು ಹುಡುಕಿ", progress_domains: "ಕೌಶಲ್ಯಗಳು", progress_description: "ವಿವರಣೆ", progress_location: "ಸ್ಥಳ", form_title: "ನಿಮ್ಮ ಆದರ್ಶ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅನ್ನು ಹುಡುಕಿ", skills_title: "ನಿಮ್ಮ ಕೌಶಲ್ಯಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ", skills_placeholder: "ಪಟ್ಟಿಯಿಂದ ಕೌಶಲ್ಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ...", skills_add_more: "ಇನ್ನಷ್ಟು ಸೇರಿಸುವುದೇ?", description_title: "ನಿಮ್ಮ ಆದರ್ಶ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅನ್ನು ವಿವರಿಸಿ (ಐಚ್ಛಿಕ)", description_placeholder: "ಉದಾ., 'ಸುಸ್ಥಿರ ಇಂಧನ ನೀತಿ ಸಂಶೋಧನೆಯ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸಿದ ಪಾತ್ರ'", location_title: "ಸ್ಥಳ", location_placeholder: "ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ...", recommend_btn: "ಇಂಟರ್ನ್‌ಶಿಪ್‌ಗಳನ್ನು ಹುಡುಕಿ", results_title: "ಶಿಫಾರಸು ಮಾಡಲಾದ ಅವಕಾಶಗಳು", show_desc_btn: "ವಿಶ್ಲೇಷಣೆಗಳನ್ನು ಪಡೆಯಿರಿ", card_location: "ಸ್ಥಳ", card_mode: "ಮೋಡ್", stipend: "ಸ್ಟೈಫಂಡ್", about_company: "ಸಚಿವಾಲಯ/ಇಲಾಖೆಯ ಬಗ್ಗೆ", skills_required: "ಅಗತ್ಯವಿರುವ ಕೌಶಲ್ಯಗಳು", finding_match: "ನಿಮಗಾಗಿ ಪರಿಪೂರ್ಣ ಹೊಂದಾಣಿಕೆಯನ್ನು ಕಂಡುಹಿಡಿಯಲಾಗುತ್ತಿದೆ...", city_remote: "ದೂರಸ್ಥ", city_bengaluru: "ಬೆಂಗಳೂರು", city_chennai: "ಚೆನ್ನೈ", city_delhi: "ದೆಹಲಿ", city_hyderabad: "ಹೈದರಾಬಾದ್", city_jaipur: "ಜೈಪುರ", city_kolkata: "ಕೋಲ್ಕತ್ತಾ", city_mumbai: "ಮುಂಬೈ", city_pune: "ಪುಣೆ", city_vizag: "ವಿಶಾಖಪಟ್ಟಣ" },
+                bn: { portal_subtitle: "প্রধানমন্ত্রী ইন্টার্নশিপ স্কিম", nav_home: "হোম", nav_find: "ইন্টার্নশিপ খুঁজুন", progress_domains: "দক্ষতা", progress_description: "বিবরণ", progress_location: "অবস্থান", form_title: "আপনার আদর্শ ইন্টার্নশিপ খুঁজুন", skills_title: "আপনার দক্ষতা নির্বাচন করুন", skills_placeholder: "তালিকা থেকে একটি দক্ষতা নির্বাচন করুন...", skills_add_more: "আরও যোগ করবেন?", description_title: "আপনার আদর্শ ইন্টার্নশিপ বর্ণনা করুন (ঐচ্ছিক)", description_placeholder: "যেমন, 'টেকসই শক্তি নীতি গবেষণার উপর দৃষ্টি নিবদ্ধ করা একটি ভূমিকা'", location_title: "অবস্থান", location_placeholder: "একটি শহর নির্বাচন করুন...", recommend_btn: "ইন্টার্নশিপ খুঁজুন", results_title: "প্রস্তাবিত সুযোগ", show_desc_btn: "বিশ্লেষণ পান", card_location: "অবস্থান", card_mode: "মোড", stipend: "স্টাইপেন্ড", about_company: "মন্ত্রণালয়/বিভাগ সম্পর্কে", skills_required: "প্রয়োজনীয় দক্ষতা", finding_match: "আপনার জন্য নিখুঁত মিল খুঁজে বের করা হচ্ছে...", city_remote: "দূরবর্তী", city_bengaluru: "বেঙ্গালুরু", city_chennai: "চেন্নাই", city_delhi: "দিল্লি", city_hyderabad: "হায়দ্রাবাদ", city_jaipur: "জয়পুর", city_kolkata: "কলকাতা", city_mumbai: "মুম্বাই", city_pune: "পুনে", city_vizag: "বিশাখাপত্তনম" }
+            };
+
+            const langMap = { en: 'English', hi: 'हिन्दी', mr: 'मराठी', ta: 'தமிழ்', te: 'తెలుగు', ml: 'മലയാളം', kn: 'ಕನ್ನಡ', bn: 'বাংলা' };
+
+            function translatePage(lang) {
+                document.documentElement.lang = lang;
+                document.querySelectorAll('[data-translate-key]').forEach(el => {
+                    const key = el.dataset.translateKey;
+                    if (translations[lang] && translations[lang][key]) {
+                        if (el.tagName === 'TEXTAREA' || el.tagName === 'INPUT' || el.tagName === 'OPTION') {
+                           if (el.tagName === 'OPTION') {
+                                if (el.value !== "") { // Don't translate the placeholder option text
+                                    el.textContent = translations[lang][key];
+                                }
+                            } else {
+                                el.placeholder = translations[lang][key];
+                            }
+                        } else {
+                            el.textContent = translations[lang][key];
+                        }
+                    }
+                });
+                if (userSelections.domains.size === 0) {
+                    customDropdownPlaceholder.textContent = translations[lang].skills_placeholder;
+                } else {
+                    customDropdownPlaceholder.textContent = translations[lang].skills_add_more;
+                }
+            }
+
+            function setLanguage(lang) {
+                document.getElementById('currentLangText').textContent = langMap[lang] || 'English';
+                translatePage(lang);
+                localStorage.setItem('language', lang);
+            }
+
+            const languageSelector = document.getElementById('languageSelector');
+            const languageDropdown = document.getElementById('languageDropdown');
+
+            languageSelector.addEventListener('click', (e) => { e.stopPropagation(); languageDropdown.classList.toggle('visible'); });
+            languageDropdown.addEventListener('click', (e) => { e.preventDefault(); if (e.target.tagName === 'A') { setLanguage(e.target.dataset.lang); } });
+
+            customDropdownHeader.addEventListener('click', (e) => { e.stopPropagation(); customDropdownListContainer.classList.toggle('visible'); });
+            customDropdownListContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'LI') {
+                    addSkill(e.target.dataset.value);
+                    customDropdownListContainer.classList.remove('visible');
+                }
+            });
+
+            customSkillInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const skill = customSkillInput.value.trim();
+                    if (skill) { addSkill(skill); customSkillInput.value = ''; }
+                }
+            });
+
+            descriptionInput.addEventListener('input', () => {
+                userSelections.description = descriptionInput.value.trim() || null;
+                updateProgressIndicator('description');
+            });
+
+            locationDropdown.addEventListener('change', () => {
+                userSelections.location = locationDropdown.value || null;
+                updateProgressIndicator('location');
+                checkCompletion();
+            });
+
+            window.addEventListener('click', () => {
+                if (languageDropdown.classList.contains('visible')) languageDropdown.classList.remove('visible');
+                if (customDropdownListContainer.classList.contains('visible')) customDropdownListContainer.classList.remove('visible');
+            });
+
+            const initialLang = localStorage.getItem('language') || 'en';
+            setLanguage(initialLang);
+
+            function addSkill(skill) {
+                if (skill && !userSelections.domains.has(skill)) {
+                    userSelections.domains.add(skill);
+                    addSkillTag(skill);
+                    updateProgressIndicator('domains');
+                    checkCompletion();
+                    customDropdownPlaceholder.textContent = translations[document.documentElement.lang].skills_add_more;
+                    const dropdownItem = customDropdownListContainer.querySelector(`li[data-value="${skill}"]`);
+                    if (dropdownItem) dropdownItem.classList.add('selected');
+                }
+            }
+
+            function addSkillTag(skill) {
+                const tag = document.createElement('div');
+                tag.className = 'skill-tag';
+                tag.dataset.value = skill;
+                const tagText = document.createElement('span');
+                tagText.className = 'tag-text';
+                tagText.textContent = skill;
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-tag-btn';
+                removeBtn.innerHTML = '&times;';
+                removeBtn.addEventListener('click', () => {
+                    userSelections.domains.delete(skill);
+                    tag.remove();
+                    const dropdownItem = customDropdownListContainer.querySelector(`li[data-value="${skill}"]`);
+                    if (dropdownItem) dropdownItem.classList.remove('selected');
+                    if (userSelections.domains.size === 0) {
+                        customDropdownPlaceholder.textContent = translations[document.documentElement.lang].skills_placeholder;
+                    }
+                    updateProgressIndicator('domains');
+                    checkCompletion();
+                });
+                tag.appendChild(tagText);
+                tag.appendChild(removeBtn);
+                selectedSkillsContainer.appendChild(tag);
+            }
+
+            function updateProgressIndicator(category) {
+                const indicator = progressIndicators[category];
+                if (!indicator) return;
+                indicator.classList.toggle('completed', (category === 'domains' ? userSelections.domains.size > 0 : !!userSelections[category]));
+            }
+
+            function checkCompletion() {
+                recommendBtn.disabled = !(userSelections.domains.size > 0 && userSelections.location);
+            }
+
+            recommendBtn.addEventListener('click', () => {
+                document.body.classList.add('is-loading');
+                recommendBtn.disabled = true;
+
+                // --- BACKEND INTEGRATION ---
+                const skills = Array.from(userSelections.domains).join(',');
+                const location = userSelections.location;
+                const interest = userSelections.description || '';
+
+                // Construct the API URL
+                const recommendUrl = `/api/recommend/?skills=${encodeURIComponent(skills)}&location=${encodeURIComponent(location)}&interest=${encodeURIComponent(interest)}`;
+
+                fetch(recommendUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        displayResults(data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching recommendations:', error);
+                        resultsSection.innerHTML = `<p class="no-results">An error occurred while fetching recommendations. Please try again later.</p>`;
+                    })
+                    .finally(() => {
+                        document.body.classList.remove('is-loading');
+                    });
+            });
+
+            function displayResults(data) {
+                const internships = data.recommendations;
+                const message = data.message;
+
+                let resultsHTML = `<h3 class="results-title">${message}</h3><div class="results-grid">`;
+                if (!internships || internships.length === 0) {
+                     resultsHTML += `<p class="no-results">No internships found matching your criteria. Try selecting different skills.</p>`
+                } else {
+                    internships.forEach((internship, index) => {
+                        resultsHTML += `
+                            <div class="internship-card" style="animation-delay: ${index * 150}ms;">
+                                <div class="card-main-content">
+                                    <div class="card-header"><h4 class="card-title">${internship.internship.Title}</h4><p class="card-ministry">${internship.internship.id}</p></div>
+                                    <div class="card-body">
+                                        <p><strong>Skills:</strong> ${internship.internship.Skills}</p>
+                                        <p><strong>Location:</strong> ${internship.internship.Locations}</p>
+                                    </div>
+                                    <div class="card-footer"><button class="show-desc-btn" data-id="${internship.internship.id}" data-translate-key="show_desc_btn">${translations[document.documentElement.lang].show_desc_btn}</button></div>
+                                </div>
+                            </div>`;
+                    });
+                }
+                resultsHTML += '</div>';
+                resultsSection.innerHTML = resultsHTML;
+
+                if(internships && internships.length > 0){
+                    document.querySelector('.email-widget').style.display='block';
+                }
+
+                checkCompletion();
+
+                setTimeout(() => {
+                    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 100);
+            }
+
+            function openAnalyticsModal(internshipId) {
+                analyticsModal.classList.add('visible');
+                modalBody.innerHTML = `<div class="loader-small"></div><p>Fetching analytics...</p>`; // Loading state
+
+                const userSkillsStr = Array.from(userSelections.domains).join(',');
+                const analyticsUrl = `/api/analytics/?id=${encodeURIComponent(internshipId)}&skills=${encodeURIComponent(userSkillsStr)}`;
+
+                fetch(analyticsUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            modalBody.innerHTML = `<p class="error-message">Error: ${data.error}</p>`;
+                            return;
+                        }
+
+                        let modalHTML = `
+                            <h3 class="modal-title">Analytics & Roadmap</h3>
+                            <h4>Why this is a good match:</h4>
+                            <p>${data.explanation}</p>`;
+
+                        if (data.lacking_skills_roadmap && data.lacking_skills_roadmap.length > 0) {
+                             modalHTML += `<h4>Your Personalized Learning Roadmap:</h4>`;
+                             data.lacking_skills_roadmap.forEach(skillData => {
+                                modalHTML += `
+                                <div class="roadmap-skill-section">
+                                    <h5>Upskill in: ${skillData.skill_name}</h5>
+                                    <h6>Learning Milestones:</h6>
+                                    <ul>${skillData.learning_roadmap.milestones.map(m => `<li>${m}</li>`).join('')}</ul>
+                                    <h6>Mini-Projects to Practice:</h6>
+                                    <ul>${skillData.learning_roadmap.mini_projects.map(p => `<li>${p}</li>`).join('')}</ul>
+                                    <h6>Recommended Resources:</h6>
+                                    <ul>
+                                        ${skillData.learning_roadmap.resources.online_courses.map(c => `<li><a href="${c.url}" target="_blank">${c.name}</a> (Online Course)</li>`).join('')}
+                                        <li><a href="${skillData.learning_roadmap.resources.official_docs}" target="_blank">Official Documentation</a></li>
+                                        ${skillData.learning_roadmap.resources.youtube_playlists.map(y => `<li><a href="${y.url}" target="_blank">${y.title}</a> (YouTube)</li>`).join('')}
+                                    </ul>
+                                </div>
+                                `;
+                             });
+                        } else {
+                            modalHTML += `<p><strong>You have all the required skills for this role!</strong></p>`
+                        }
+
+                        modalBody.innerHTML = modalHTML;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching analytics:', error);
+                        modalBody.innerHTML = `<p class="error-message">Could not fetch analytics. Please try again.</p>`;
+                    });
+            }
+
+            resultsSection.addEventListener('click', (e) => {
+                if (e.target.classList.contains('show-desc-btn')) {
+                    openAnalyticsModal(e.target.dataset.id);
+                }
+            });
+
+            closeModalBtn.addEventListener('click', () => analyticsModal.classList.remove('visible'));
+            analyticsModal.addEventListener('click', (e) => {
+                if (e.target === analyticsModal) analyticsModal.classList.remove('visible');
+            });
+
+            // Chatbot functionality
+            chatIcon.addEventListener('click', () => { chatWindow.classList.toggle('visible'); });
+            closeChatBtn.addEventListener('click', () => { chatWindow.classList.remove('visible'); });
+
+            const chatbotResponses = {
+                "what is this scheme": "This is the Prime Minister's Internship Scheme, designed to provide young graduates with opportunities to work on impactful government projects.",
+                "how to apply": "You can find and apply for internships through this portal. Select your skills and preferred location to see recommended opportunities.",
+                "eligibility": "Typically, final year students or recent graduates from recognized universities are eligible. Specific requirements may vary by internship.",
+                "stipend": "Yes, most internships under this scheme offer a competitive monthly stipend. The amount varies depending on the ministry and role.",
+                "duration": "Internship durations can vary, but they are usually between 2 to 6 months.",
+                "default": "I'm sorry, I don't have information on that. You can try asking about eligibility, application process, or duration."
+            };
+
+            function getBotResponse(userMessage) {
+                const message = userMessage.toLowerCase();
+                if (message.includes("scheme") || message.includes("what is this")) return chatbotResponses["what is this scheme"];
+                if (message.includes("apply") || message.includes("how to")) return chatbotResponses["how to apply"];
+                if (message.includes("eligible") || message.includes("eligibility")) return chatbotResponses["eligibility"];
+                if (message.includes("stipend") || message.includes("paid")) return chatbotResponses["stipend"];
+                if (message.includes("duration") || message.includes("long")) return chatbotResponses["duration"];
+                return chatbotResponses["default"];
+            }
+
+            function addMessage(message, sender) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `chat-message ${sender}`;
+                messageElement.innerHTML = `<p>${message}</p>`;
+                chatBody.appendChild(messageElement);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+
+            function handleChat() {
+                const userMessage = chatInput.value.trim();
+                if (userMessage) {
+                    addMessage(userMessage, 'user');
+                    chatInput.value = '';
+                    setTimeout(() => {
+                        const botMessage = getBotResponse(userMessage);
+                        addMessage(botMessage, 'bot');
+                    }, 500);
+                }
+            }
+
+            sendChatBtn.addEventListener('click', handleChat);
+            chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleChat(); });
+
+            // Email Modal functionality
+            openEmailModalBtn.addEventListener('click', () => { emailModal.classList.add('visible'); });
+            closeEmailModalBtn.addEventListener('click', () => {
+                emailModal.classList.remove('visible');
+                emailForm.style.display = 'block';
+                emailSuccess.style.display = 'none';
+                emailInput.value = '';
+                emailError.textContent = '';
+            });
+            emailModal.addEventListener('click', (e) => { if (e.target === emailModal) emailModal.classList.remove('visible'); });
+
+            emailForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = emailInput.value.trim();
+                if (validateEmail(email)) {
+                    emailError.textContent = '';
+                    submitEmailBtn.disabled = true;
+                    submitEmailBtn.textContent = 'Sending...';
+                    setTimeout(() => {
+                        emailForm.style.display = 'none';
+                        emailSuccess.style.display = 'block';
+                        submitEmailBtn.disabled = false;
+                        submitEmailBtn.textContent = 'Send Kit';
+                    }, 1000);
+                } else {
+                    emailError.textContent = 'Please enter a valid email address.';
+                }
+            });
+
+            function validateEmail(email) {
+                const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // **** NEW SCRIPT FOR OUTGOING TRANSITION ****
+            const homeLink = document.querySelector('a[href="{% url 'home' %}"]');
+            const transitionOverlay = document.querySelector('.transition-overlay');
+
+            homeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const destination = this.href;
+
+                // Add classes to start blur/fade and transition
+                document.body.classList.add('is-leaving');
+                transitionOverlay.classList.remove('animate-in'); // Remove old class
+                transitionOverlay.classList.add('animate');     // Add closing animation class
+
+                setTimeout(() => {
+                    window.location.href = destination;
+                }, 1500);
+            });
+        });
+    </script>
+
+</body>
+</html>

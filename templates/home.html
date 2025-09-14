@@ -1,10 +1,741 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliRec - PM Internship Scheme</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/transition.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-$END$
+
+<div class="page-wrapper">
+
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="{% static 'image/logo1.png' %}" alt="Logo">
+
+                <h1 data-translate-key="logo_title">IntelliRec</h1>
+            </div>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <a href="{% url 'home' %}" class="nav-link active" data-translate-key="nav_home">Home</a>
+                    <a href="{% url 'portal' %}" class="nav-link" data-translate-key="nav_find">Find Internships</a>
+                </nav>
+                <div class="language-selector" id="languageSelector">
+                    <div class="current-language">
+                        <span id="currentLangText">English</span>
+                        <span class="arrow-down">▼</span>
+                    </div>
+                    <ul class="language-dropdown" id="languageDropdown">
+                        <li><a href="#" data-lang="en">English</a></li>
+                        <li><a href="#" data-lang="hi">हिन्दी</a></li>
+                        <li><a href="#" data-lang="mr">मराठी</a></li>
+                        <li><a href="#" data-lang="ta">தமிழ்</a></li>
+                        <li><a href="#" data-lang="te">తెలుగు</a></li>
+                        <li><a href="#" data-lang="ml">മലയാളം</a></li>
+                        <li><a href="#" data-lang="kn">ಕನ್ನಡ</a></li>
+                        <li><a href="#" data-lang="bn">বাংলা</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="hero-content section-container">
+                <div class="hero-text">
+                    <h1 data-translate-key="hero_title">Your Gateway to Premier Internships</h1>
+                    <p data-translate-key="hero_subtitle">InternReco intelligently matches your skills with prestigious
+                        opportunities in the Prime Minister's Internship Scheme, simplifying your path to a high-impact
+                        career.</p>
+                    <a href="{% url 'portal' %}" class="cta-button" id="ctaButton" data-translate-key="hero_cta">Find
+                        Your Internship</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="main-content-wrapper">
+            <h2 class="scheme-title" data-translate-key="scheme_title">Prime Minister's Internship Scheme</h2>
+
+            <section class="why-join-section section-container">
+                <h3 class="section-subtitle" data-translate-key="why_join_title">Why Join The Scheme?</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🏛️</div>
+                        <h4 data-translate-key="feature1_title">National Impact</h4>
+                        <p data-translate-key="feature1_desc">Work on projects that directly contribute to national
+                            policies and digital infrastructure.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h4 data-translate-key="feature2_title">Expert Mentorship</h4>
+                        <p data-translate-key="feature2_desc">Learn from and be guided by leading experts and
+                            policymakers in various government ministries.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h4 data-translate-key="feature3_title">Skill Development</h4>
+                        <p data-translate-key="feature3_desc">Gain hands-on experience in cutting-edge domains like AI,
+                            Cybersecurity, and Data Science.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="how-it-works-section">
+                <div class="section-container">
+                    <h3 class="section-subtitle" data-translate-key="how_it_works_title">Your Journey Starts Here</h3>
+                    <div class="steps-grid">
+                        <div class="step-card">
+                            <div class="step-number">1</div>
+                            <h4 data-translate-key="step1_title">Select Your Skills</h4>
+                            <p data-translate-key="step1_desc">Choose your areas of expertise from our comprehensive
+                                list of tech domains.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">2</div>
+                            <h4 data-translate-key="step2_title">Get Recommendations</h4>
+                            <p data-translate-key="step2_desc">Receive a tailored list of internship opportunities that
+                                perfectly match your profile.</p>
+                        </div>
+                        <div class="step-card">
+                            <div class="step-number">3</div>
+                            <h4 data-translate-key="step3_title">Prepare & Apply</h4>
+                            <p data-translate-key="step3_desc">Use our AI tools to prepare for interviews and take the
+                                next step in your career.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="domains-section section-container">
+                <h3 class="section-subtitle" data-translate-key="domains_title">Explore Featured Domains</h3>
+                <div class="domains-interactive-wrapper">
+                    <div class="domain-tabs" id="domainTabs">
+                        <button class="domain-tab active" data-target="ai" data-translate-key="domain_tab_ai">Artificial
+                            Intelligence
+                        </button>
+                        <button class="domain-tab" data-target="cloud" data-translate-key="domain_tab_cloud">Cloud
+                            Computing
+                        </button>
+                        <button class="domain-tab" data-target="ds" data-translate-key="domain_tab_ds">Data Science
+                        </button>
+                        <button class="domain-tab" data-target="ml" data-translate-key="domain_tab_ml">Machine
+                            Learning
+                        </button>
+                        <button class="domain-tab" data-target="video" data-translate-key="domain_tab_video">Video
+                            Editing
+                        </button>
+                    </div>
+                    <div class="domain-content-panels" id="domainContentPanels">
+                        <div class="domain-content-panel active" id="ai">
+                            <h4 data-translate-key="ai_content_title">Artificial Intelligence</h4>
+                            <p data-translate-key="ai_content_desc">AI is the simulation of human intelligence in
+                                machines. In this scheme, you will work on projects that use AI to improve public
+                                services, automate processes, and inform policy. Mastering AI opens doors to high-demand
+                                roles in tech, research, and governance, making you a valuable asset in the future job
+                                market.</p>
+                        </div>
+                        <div class="domain-content-panel" id="cloud">
+                            <h4 data-translate-key="cloud_content_title">Cloud Computing</h4>
+                            <p data-translate-key="cloud_content_desc">Cloud Computing delivers on-demand computing
+                                services over the internet. Interns will help manage and scale the digital
+                                infrastructure that powers national projects like DigiLocker. Expertise in cloud
+                                platforms like AWS and Azure is one of the most sought-after skills in the modern IT
+                                landscape.</p>
+                        </div>
+                        <div class="domain-content-panel" id="ds">
+                            <h4 data-translate-key="ds_content_title">Data Science</h4>
+                            <p data-translate-key="ds_content_desc">Data Science involves extracting insights and
+                                knowledge from large datasets. You will analyze national-level data to identify trends
+                                that can shape government policy. This skill is critical for any organization that wants
+                                to make data-driven decisions, placing you at the forefront of the information
+                                economy.</p>
+                        </div>
+                        <div class="domain-content-panel" id="ml">
+                            <h4 data-translate-key="ml_content_title">Machine Learning</h4>
+                            <p data-translate-key="ml_content_desc">A subset of AI, Machine Learning focuses on building
+                                algorithms that allow computers to learn from data. You could work on predictive models
+                                for agriculture, defense, or healthcare. This specialization is highly valued and leads
+                                to careers in building intelligent, predictive applications across all industries.</p>
+                        </div>
+                        <div class="domain-content-panel" id="video">
+                            <h4 data-translate-key="video_content_title">Video Editing</h4>
+                            <p data-translate-key="video_content_desc">Video Editing is the art of storytelling through
+                                visual media. In this scheme, you will create compelling video content for major
+                                national campaigns like Digital India. Strong visual communication skills are essential
+                                in the modern job market for roles in marketing, media, and public relations.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="testimonials-section">
+                <div class="section-container">
+                    <h3 class="section-subtitle" data-translate-key="testimonials_title">From Our Interns</h3>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text" data-translate-key="testimonial1_text">"Working with NITI Aayog
+                                was a dream come true. The project I was a part of is now being implemented nationwide.
+                                The experience was invaluable."</p>
+                            <p class="testimonial-author">- Priya Sharma, AI Ethics Intern</p>
+                        </div>
+                        <div class="testimonial-card">
+                            <p class="testimonial-text" data-translate-key="testimonial2_text">"The mentorship I
+                                received at the National Cyber Security office was world-class. I learned more in 6
+                                months than in 2 years of college."</p>
+                            <p class="testimonial-author">- Rohan Das, Cyber Threat Analyst Intern</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p data-translate-key="footer_text">© 2025 Government of India. All Rights Reserved.</p>
+    </footer>
+    <div class="chatbot-widget">
+        <div class="chat-icon" id="chatIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-message-square">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>Internship Assistant</h3>
+                <button id="closeChatBtn">&times;</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="chat-message bot">
+                    <p>Hello! How can I help you with the internship program today?</p>
+                </div>
+            </div>
+            <div class="chat-footer">
+                <input type="text" id="chatInput" placeholder="Ask a question...">
+                <button id="sendChatBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                         class="feather feather-send">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="transition-overlay"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const transitionLinks = document.querySelectorAll('a[href="{% url 'portal' %}"]');
+        const transitionOverlay = document.querySelector('.transition-overlay');
+
+        const handleTransition = function (e) {
+            e.preventDefault();
+            const destination = this.href;
+
+            document.body.classList.add('is-leaving');
+            transitionOverlay.classList.add('animate');
+
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 1500); // Wait 1.5s for the animation
+        };
+
+        transitionLinks.forEach(link => link.addEventListener('click', handleTransition));
+
+        // Keep your existing language and chatbot script
+        const translations = {
+            en: {
+                logo_title: "IntelliRec",
+                nav_home: "Home",
+                nav_find: "Find Internships",
+                hero_title: "Your Gateway to Premier Internships",
+                hero_subtitle: "IntelliRec intelligently matches your skills with prestigious opportunities in the Prime Minister's Internship Scheme, simplifying your path to a high-impact career.",
+                hero_cta: "Find Your Internship",
+                scheme_title: "Prime Minister's Internship Scheme",
+                why_join_title: "Why Join The Scheme?",
+                feature1_title: "National Impact",
+                feature1_desc: "Work on projects that directly contribute to national policies and digital infrastructure.",
+                feature2_title: "Expert Mentorship",
+                feature2_desc: "Learn from and be guided by leading experts and policymakers in various government ministries.",
+                feature3_title: "Skill Development",
+                feature3_desc: "Gain hands-on experience in cutting-edge domains like AI, Cybersecurity, and Data Science.",
+                how_it_works_title: "Your Journey Starts Here",
+                step1_title: "Select Your Skills",
+                step1_desc: "Choose your areas of expertise from our comprehensive list of tech domains.",
+                step2_title: "Get Recommendations",
+                step2_desc: "Receive a tailored list of internship opportunities that perfectly match your profile.",
+                step3_title: "Prepare & Apply",
+                step3_desc: "Use our AI tools to prepare for interviews and take the next step in your career.",
+                domains_title: "Explore Featured Domains",
+                domain_tab_ai: "Artificial Intelligence",
+                domain_tab_cloud: "Cloud Computing",
+                domain_tab_ds: "Data Science",
+                domain_tab_ml: "Machine Learning",
+                domain_tab_video: "Video Editing",
+                ai_content_title: "Artificial Intelligence",
+                ai_content_desc: "AI is the simulation of human intelligence in machines. In this scheme, you will work on projects that use AI to improve public services, automate processes, and inform policy. Mastering AI opens doors to high-demand roles in tech, research, and governance, making you a valuable asset in the future job market.",
+                cloud_content_title: "Cloud Computing",
+                cloud_content_desc: "Cloud Computing delivers on-demand computing services over the internet. Interns will help manage and scale the digital infrastructure that powers national projects like DigiLocker. Expertise in cloud platforms like AWS and Azure is one of the most sought-after skills in the modern IT landscape.",
+                ds_content_title: "Data Science",
+                ds_content_desc: "Data Science involves extracting insights and knowledge from large datasets. You will analyze national-level data to identify trends that can shape government policy. This skill is critical for any organization that wants to make data-driven decisions, placing you at the forefront of the information economy.",
+                ml_content_title: "Machine Learning",
+                ml_content_desc: "A subset of AI, Machine Learning focuses on building algorithms that allow computers to learn from data. You could work on predictive models for agriculture, defense, or healthcare. This specialization is highly valued and leads to careers in building intelligent, predictive applications across all industries.",
+                video_content_title: "Video Editing",
+                video_content_desc: "Video Editing is the art of storytelling through visual media. In this scheme, you will create compelling video content for major national campaigns like Digital India. Strong visual communication skills are essential in the modern job market for roles in marketing, media, and public relations.",
+                testimonials_title: "From Our Interns",
+                testimonial1_text: `"Working with NITI Aayog was a dream come true. The project I was a part of is now being implemented nationwide. The experience was invaluable."`,
+                testimonial2_text: `"The mentorship I received at the National Cyber Security office was world-class. I learned more in 6 months than in 2 years of college."`,
+                footer_text: "© 2025 Government of India. All Rights Reserved."
+            },
+            hi: {
+                logo_title: "इंटेलीरेक",
+                nav_home: "होम",
+                nav_find: "इंटर्नशिप खोजें",
+                hero_title: "प्रमुख इंटर्नशिप के लिए आपका प्रवेश द्वार",
+                hero_subtitle: "इंटेलीरेक प्रधानमंत्री इंटर्नशिप योजना में प्रतिष्ठित अवसरों के साथ आपके कौशल का बुद्धिमानी से मिलान करता है, जो उच्च प्रभाव वाले करियर के लिए आपके रास्ते को सरल बनाता है।",
+                hero_cta: "अपनी इंटर्नशिप खोजें",
+                scheme_title: "प्रधानमंत्री इंटर्नशिप योजना",
+                why_join_title: "योजना में क्यों शामिल हों?",
+                feature1_title: "राष्ट्रीय प्रभाव",
+                feature1_desc: "उन परियोजनाओं पर काम करें जो सीधे राष्ट्रीय नीतियों और डिजिटल बुनियादी ढांचे में योगदान करती हैं।",
+                feature2_title: "विशेषज्ञ मार्गदर्शन",
+                feature2_desc: "विभिन्न सरकारी मंत्रालयों में अग्रणी विशेषज्ञों और नीति निर्माताओं से सीखें और मार्गदर्शन प्राप्त करें।",
+                feature3_title: "कौशल विकास",
+                feature3_desc: "एआई, साइबर सुरक्षा और डेटा साइंस जैसे अत्याधुनिक डोमेन में व्यावहारिक अनुभव प्राप्त करें।",
+                how_it_works_title: "आपकी यात्रा यहां से शुरू होती है",
+                step1_title: "अपने कौशल चुनें",
+                step1_desc: "तकनीकी डोमेन की हमारी व्यापक सूची से अपनी विशेषज्ञता के क्षेत्रों का चयन करें।",
+                step2_title: "सिफारिशें प्राप्त करें",
+                step2_desc: "इंटर्नशिप के अवसरों की एक अनुकूलित सूची प्राप्त करें जो आपकी प्रोफ़ाइल से पूरी तरह मेल खाती है।",
+                step3_title: "तैयारी करें और आवेदन करें",
+                step3_desc: "साक्षात्कार की तैयारी के लिए हमारे एआई टूल का उपयोग करें और अपने करियर में अगला कदम उठाएं।",
+                domains_title: "विशेष रुप से प्रदर्शित डोमेन का अन्वेषण करें",
+                domain_tab_ai: "आर्टिफिशियल इंटेलिजेंस",
+                domain_tab_cloud: "क्लाउड कंप्यूटिंग",
+                domain_tab_ds: "डेटा साइंस",
+                domain_tab_ml: "मशीन लर्निंग",
+                domain_tab_video: "वीडियो एडिटिंग",
+                ai_content_title: "आर्टिफिशियल इंटेलिजेंस",
+                ai_content_desc: "एआई मशीनों में मानव बुद्धि का अनुकरण है। इस योजना में, आप उन परियोजनाओं पर काम करेंगे जो सार्वजनिक सेवाओं को बेहतर बनाने, प्रक्रियाओं को स्वचालित करने और नीति को सूचित करने के लिए एआई का उपयोग करती हैं। एआई में महारत हासिल करना तकनीक, अनुसंधान और शासन में उच्च-मांग वाली भूमिकाओं के द्वार खोलता है, जो आपको भविष्य के नौकरी बाजार में एक मूल्यवान संपत्ति बनाता है।",
+                cloud_content_title: "क्लाउड कंप्यूटING",
+                cloud_content_desc: "क्लाउड कंप्यूटिंग इंटरनेट पर ऑन-डिमांड कंप्यूटिंग सेवाएं प्रदान करता है। इंटर्न डिजी लॉकर जैसी राष्ट्रीय परियोजनाओं को शक्ति देने वाले डिजिटल बुनियादी ढांचे का प्रबंधन और विस्तार करने में मदद करेंगे। एडब्ल्यूएस और एज़्योर जैसे क्लाउड प्लेटफॉर्म में विशेषज्ञता आधुनिक आईटी परिदृश्य में सबसे अधिक मांग वाले कौशलों में से एक है।",
+                ds_content_title: "डेटा साइंस",
+                ds_content_desc: "डेटा साइंस में बड़े डेटासेट से अंतर्दृष्टि और ज्ञान निकालना शामिल है। आप उन रुझानों की पहचान करने के लिए राष्ट्रीय स्तर के डेटा का विश्लेषण करेंगे जो सरकारी नीति को आकार दे सकते हैं। यह कौशल किसी भी संगठन के लिए महत्वपूर्ण है जो डेटा-संचालित निर्णय लेना चाहता है, जो आपको सूचना अर्थव्यवस्था में सबसे आगे रखता है।",
+                ml_content_title: "मशीन लर्निंग",
+                ml_content_desc: "एआई का एक सबसेट, मशीन लर्निंग एल्गोरिदम बनाने पर केंद्रित है जो कंप्यूटर को डेटा से सीखने की अनुमति देता है। आप कृषि, रक्षा या स्वास्थ्य सेवा के लिए भविष्य कहनेवाला मॉडल पर काम कर सकते हैं। यह विशेषज्ञता अत्यधिक मूल्यवान है और सभी उद्योगों में बुद्धिमान, भविष्य कहनेवाला एप्लिकेशन बनाने में करियर की ओर ले जाती है।",
+                video_content_title: "वीडियो एडिटिंग",
+                video_content_desc: "वीडियो एडिटिंग दृश्य मीडिया के माध्यम से कहानी कहने की कला है। इस योजना में, आप डिजिटल इंडिया जैसे प्रमुख राष्ट्रीय अभियानों के लिए आकर्षक वीडियो सामग्री बनाएंगे। विपणन, मीडिया और जनसंपर्क में भूमिकाओं के लिए आधुनिक नौकरी बाजार में मजबूत दृश्य संचार कौशल आवश्यक हैं।",
+                testimonials_title: "हमारे इंटर्न से",
+                testimonial1_text: `"नीति आयोग के साथ काम करना एक सपने के सच होने जैसा था। जिस परियोजना का मैं हिस्सा थी, उसे अब देश भर में लागू किया जा रहा है। यह अनुभव अमूल्य था।"`,
+                testimonial2_text: `"राष्ट्रीय साइबर सुरक्षा कार्यालय में मुझे जो मार्गदर्शन मिला, वह विश्व स्तरीय था। मैंने 2 साल के कॉलेज की तुलना में 6 महीने में अधिक सीखा।"`,
+                footer_text: "© 2025 भारत सरकार। सर्वाधिकार सुरक्षित।"
+            },
+            mr: {
+                logo_title: "इंटेलीरेक",
+                nav_home: "मुख्यपृष्ठ",
+                nav_find: "इंटर्नशिप शोधा",
+                hero_title: "प्रीमियर इंटर्नशिपसाठी तुमचा प्रवेशद्वार",
+                hero_subtitle: "इंटेलीरेक प्रधानमंत्री इंटर्नशिप योजनेतील प्रतिष्ठित संधींसह तुमच्या कौशल्यांना हुशारीने जुळवते, उच्च-प्रभावी करिअरसाठी तुमचा मार्ग सोपा करते.",
+                hero_cta: "तुमची इंटर्नशिप शोधा",
+                scheme_title: "प्रधानमंत्री इंटर्नशिप योजना",
+                why_join_title: "योजनेत का सामील व्हावे?",
+                feature1_title: "राष्ट्रीय प्रभाव",
+                feature1_desc: "थेट राष्ट्रीय धोरणे आणि डिजिटल पायाभूत सुविधांमध्ये योगदान देणाऱ्या प्रकल्पांवर काम करा.",
+                feature2_title: "तज्ञ मार्गदर्शन",
+                feature2_desc: "विविध सरकारी मंत्रालयांमधील अग्रगण्य तज्ञ आणि धोरणकर्त्यांकडून शिका आणि मार्गदर्शन मिळवा.",
+                feature3_title: "कौशल्य विकास",
+                feature3_desc: "एआय, सायबर सुरक्षा आणि डेटा सायन्स यांसारख्या अत्याधुनिक डोमेनमध्ये प्रत्यक्ष अनुभव मिळवा.",
+                how_it_works_title: "तुमचा प्रवास येथून सुरू होतो",
+                step1_title: "तुमची कौशल्ये निवडा",
+                step1_desc: "आमच्या टेक डोमेनच्या सर्वसमावेशक सूचीमधून तुमच्या कौशल्याची क्षेत्रे निवडा.",
+                step2_title: "शिफारसी मिळवा",
+                step2_desc: "तुमच्या प्रोफाइलशी पूर्णपणे जुळणाऱ्या इंटर्नशिप संधींची एक तयार केलेली सूची प्राप्त करा.",
+                step3_title: "तयारी करा आणि अर्ज करा",
+                step3_desc: "मुलाखतीची तयारी करण्यासाठी आमची एआय साधने वापरा आणि तुमच्या करिअरमध्ये पुढचे पाऊल टाका.",
+                domains_title: "वैशिष्ट्यीकृत डोमेन एक्सप्लोर करा",
+                domain_tab_ai: "कृत्रिम बुद्धिमत्ता",
+                domain_tab_cloud: "क्लाउड कंप्युटिंग",
+                domain_tab_ds: "डेटा सायन्स",
+                domain_tab_ml: "मशीन लर्निंग",
+                domain_tab_video: "व्हिडिओ एडिटिंग",
+                ai_content_title: "कृत्रिम बुद्धिमत्ता",
+                ai_content_desc: "एआय म्हणजे मशीनमध्ये मानवी बुद्धिमत्तेचे अनुकरण. या योजनेत, तुम्ही सार्वजनिक सेवा सुधारण्यासाठी, प्रक्रिया स्वयंचलित करण्यासाठी आणि धोरण सूचित करण्यासाठी एआय वापरणाऱ्या प्रकल्पांवर काम कराल. एआयमध्ये प्रभुत्व मिळवणे टेक, संशोधन आणि प्रशासनातील उच्च-मागणीच्या भूमिकांसाठी दरवाजे उघडते, ज्यामुळे तुम्हाला भविष्यातील नोकरीच्या बाजारपेठेत एक मौल्यवान मालमत्ता बनते.",
+                cloud_content_title: "क्लाउड कंप्युटिंग",
+                cloud_content_desc: "क्लाउड कंप्युटिंग इंटरनेटवर ऑन-डिमांड कंप्युटिंग सेवा देते. इंटर्न डिजी लॉकरसारख्या राष्ट्रीय प्रकल्पांना शक्ती देणाऱ्या डिजिटल पायाभूत सुविधांचे व्यवस्थापन आणि मोजमाप करण्यास मदत करतील. AWS आणि Azure सारख्या क्लाउड प्लॅटफॉर्ममधील कौशल्य आधुनिक आयटी लँडस्केपमध्ये सर्वाधिक मागणी असलेल्या कौशल्यांपैकी एक आहे.",
+                ds_content_title: "डेटा सायन्स",
+                ds_content_desc: "डेटा सायन्समध्ये मोठ्या डेटासेटमधून अंतर्दृष्टी आणि ज्ञान काढणे समाविष्ट आहे. तुम्ही सरकारी धोरणाला आकार देऊ शकणारे ट्रेंड ओळखण्यासाठी राष्ट्रीय-स्तरीय डेटाचे विश्लेषण कराल. डेटा-चालित निर्णय घेऊ इच्छिणाऱ्या कोणत्याही संस्थेसाठी हे कौशल्य महत्त्वपूर्ण आहे, जे तुम्हाला माहिती अर्थव्यवस्थेत सर्वात पुढे ठेवते.",
+                ml_content_title: "मशीन लर्निंग",
+                ml_content_desc: "एआयचा एक उपसंच, मशीन लर्निंग संगणकांना डेटामधून शिकण्यास अनुमती देणारे अल्गोरिदम तयार करण्यावर लक्ष केंद्रित करते. तुम्ही कृषी, संरक्षण किंवा आरोग्यसेवेसाठी भविष्यवाणी मॉडेलवर काम करू शकता. ही विशेषज्ञता अत्यंत मौल्यवान आहे आणि सर्व उद्योगांमध्ये बुद्धिमान, भविष्यवाणी अनुप्रयोग तयार करण्याच्या करिअरकडे नेते.",
+                video_content_title: "व्हिडिओ एडिटिंग",
+                video_content_desc: "व्हिडिओ एडिटिंग ही व्हिज्युअल मीडियाद्वारे कथाकथनाची कला आहे. या योजनेत, तुम्ही डिजिटल इंडियासारख्या प्रमुख राष्ट्रीय मोहिमांसाठी आकर्षक व्हिडिओ सामग्री तयार कराल. विपणन, मीडिया आणि जनसंपर्कमधील भूमिकांसाठी आधुनिक नोकरीच्या बाजारपेठेत मजबूत व्हिज्युअल कम्युनिकेशन कौशल्ये आवश्यक आहेत.",
+                testimonials_title: "आमच्या इंटर्नकडून",
+                testimonial1_text: `"नीति आयोगासोबत काम करणे हे एक स्वप्न सत्यात उतरण्यासारखे होते. मी ज्या प्रकल्पाचा भाग होतो, तो आता देशभरात राबवला जात आहे. हा अनुभव अमूल्य होता."`,
+                testimonial2_text: `"राष्ट्रीय सायबर सुरक्षा कार्यालयात मला मिळालेले मार्गदर्शन जागतिक दर्जाचे होते. मी २ वर्षांच्या कॉलेजपेक्षा ६ महिन्यांत जास्त शिकलो."`,
+                footer_text: "© 2025 भारत सरकार. सर्व हक्क राखीव."
+            },
+            ta: {
+                logo_title: "இன்டெல்லிரெக்",
+                nav_home: "முகப்பு",
+                nav_find: "பயிற்சிகளைக் கண்டறியவும்",
+                hero_title: "முதன்மைப் பயிற்சிகளுக்கான உங்கள் நுழைவாயில்",
+                hero_subtitle: "இன்டெல்லிரெக் உங்கள் திறமைகளை பிரதமர் இன்டர்ன்ஷிப் திட்டத்தில் உள்ள மதிப்புமிக்க வாய்ப்புகளுடன் புத்திசாலித்தனமாகப் பொருத்துகிறது, இது உயர் தாக்கமுள்ள தொழிலுக்கான உங்கள் பாதையை எளிதாக்குகிறது.",
+                hero_cta: "உங்கள் பயிற்சியைக் கண்டறியவும்",
+                scheme_title: "பிரதமர் இன்டர்ன்ஷிப் திட்டம்",
+                why_join_title: "திட்டத்தில் ஏன் சேர வேண்டும்?",
+                feature1_title: "தேசிய தாக்கம்",
+                feature1_desc: "தேசிய கொள்கைகள் மற்றும் டிஜிட்டல் உள்கட்டமைப்புக்கு நேரடியாக பங்களிக்கும் திட்டங்களில் பணியாற்றவும்.",
+                feature2_title: "நிபுணர் வழிகாட்டுதல்",
+                feature2_desc: "பல்வேறு அரசாங்க அமைச்சகங்களில் உள்ள முன்னணி நிபுணர்கள் மற்றும் கொள்கை வகுப்பாளர்களிடமிருந்து கற்றுக் கொள்ளுங்கள் மற்றும் வழிகாட்டுதல் பெறுங்கள்.",
+                feature3_title: "திறன் மேம்பாடு",
+                feature3_desc: "AI, சைபர் செக்யூரிட்டி மற்றும் டேட்டா சயின்ஸ் போன்ற அதிநவீன களங்களில் நடைமுறை அனுபவத்தைப் பெறுங்கள்.",
+                how_it_works_title: "உங்கள் பயணம் இங்கே தொடங்குகிறது",
+                step1_title: "உங்கள் திறன்களைத் தேர்ந்தெடுக்கவும்",
+                step1_desc: "எங்கள் தொழில்நுட்ப களங்களின் விரிவான பட்டியலிலிருந்து உங்கள் நிபுணத்துவப் பகுதிகளைத் தேர்வுசெய்க.",
+                step2_title: "பரிந்துரைகளைப் பெறுங்கள்",
+                step2_desc: "உங்கள் சுயவிவரத்துடன் முழுமையாகப் பொருந்தக்கூடிய பயிற்சி வாய்ப்புகளின் வடிவமைக்கப்பட்ட பட்டியலைப் பெறுங்கள்.",
+                step3_title: "தயார் செய்து விண்ணப்பிக்கவும்",
+                step3_desc: "நேர்காணல்களுக்குத் தயாராவதற்கும், உங்கள் வாழ்க்கையில் அடுத்த படியை எடுப்பதற்கும் எங்கள் AI கருவிகளைப் பயன்படுத்தவும்.",
+                domains_title: "சிறப்பு களங்களை ஆராயுங்கள்",
+                domain_tab_ai: "செயற்கை நுண்ணறிவு",
+                domain_tab_cloud: "கிளவுட் கம்ப்யூட்டிங்",
+                domain_tab_ds: "தரவு அறிவியல்",
+                domain_tab_ml: "இயந்திர கற்றல்",
+                domain_tab_video: "வீடியோ எடிட்டிங்",
+                ai_content_title: "செயற்கை நுண்ணறிவு",
+                ai_content_desc: "AI என்பது இயந்திரங்களில் மனித நுண்ணறிவின் உருவகப்படுத்துதல் ஆகும். இந்தத் திட்டத்தில், பொது சேவைகளை மேம்படுத்த, செயல்முறைகளை தானியக்கமாக்க மற்றும் கொள்கையைத் தெரிவிக்க AI ஐப் பயன்படுத்தும் திட்டங்களில் நீங்கள் பணியாற்றுவீர்கள். AI இல் தேர்ச்சி பெறுவது தொழில்நுட்பம், ஆராய்ச்சி மற்றும் நிர்வாகத்தில் அதிக தேவையுள்ள பாத்திரங்களுக்கான கதவுகளைத் திறக்கிறது, இது உங்களை எதிர்கால வேலை சந்தையில் ஒரு மதிப்புமிக்க சொத்தாக மாற்றுகிறது.",
+                cloud_content_title: "கிளவுட் கம்ப்யூட்டிங்",
+                cloud_content_desc: "கிளவுட் கம்ப்யூட்டிங் இணையத்தில் தேவைக்கேற்ப கணினி சேவைகளை வழங்குகிறது. டிஜி லாக்கர் போன்ற தேசிய திட்டங்களுக்கு சக்தி அளிக்கும் டிஜிட்டல் உள்கட்டமைப்பை நிர்வகிக்கவும் அளவிடவும் பயிற்சியாளர்கள் உதவுவார்கள். AWS மற்றும் Azure போன்ற கிளவுட் தளங்களில் நிபுணத்துவம் நவீன IT நிலப்பரப்பில் மிகவும் விரும்பப்படும் திறன்களில் ஒன்றாகும்.",
+                ds_content_title: "தரவு அறிவியல்",
+                ds_content_desc: "தரவு அறிவியல் பெரிய தரவுத்தொகுப்புகளிலிருந்து நுண்ணறிவு மற்றும் அறிவைப் பிரித்தெடுப்பதை உள்ளடக்கியது. அரசாங்கக் கொள்கையை வடிவமைக்கக்கூடிய போக்குகளை அடையாளம் காண தேசிய அளவிலான தரவை நீங்கள் பகுப்பாய்வு செய்வீர்கள். தரவு சார்ந்த முடிவுகளை எடுக்க விரும்பும் எந்தவொரு நிறுவனத்திற்கும் இந்தத் திறன் முக்கியமானது, இது உங்களை தகவல் பொருளாதாரத்தில் முன்னணியில் வைக்கிறது.",
+                ml_content_title: "இயந்திர கற்றல்",
+                ml_content_desc: "AI இன் துணைக்குழுவான, இயந்திர கற்றல் கணினிகளை தரவிலிருந்து கற்றுக்கொள்ள அனுமதிக்கும் வழிமுறைகளை உருவாக்குவதில் கவனம் செலுத்துகிறது. நீங்கள் விவசாயம், பாதுகாப்பு அல்லது சுகாதாரத்திற்கான முன்கணிப்பு மாதிரிகளில் பணியாற்றலாம். இந்த நிபுணத்துவம் மிகவும் மதிக்கப்படுகிறது மற்றும் அனைத்து தொழில்களிலும் புத்திசாலித்தனமான, முன்கணிப்பு பயன்பாடுகளை உருவாக்குவதில் வாழ்க்கைக்கு வழிவகுக்கிறது.",
+                video_content_title: "வீடியோ எடிட்டிங்",
+                video_content_desc: "வீடியோ எடிட்டிங் என்பது காட்சி ஊடகம் மூலம் கதை சொல்லும் கலை. இந்தத் திட்டத்தில், டிஜிட்டல் இந்தியா போன்ற முக்கிய தேசிய பிரச்சாரங்களுக்கு அழுத்தமான வீடியோ உள்ளடக்கத்தை நீங்கள் உருவாக்குவீர்கள். சந்தைப்படுத்தல், ஊடகம் மற்றும் மக்கள் தொடர்பு ஆகியவற்றில் பாத்திரங்களுக்கு நவீன வேலை சந்தையில் வலுவான காட்சி தொடர்பு திறன் அவசியம்.",
+                testimonials_title: "எங்கள் பயிற்சியாளர்களிடமிருந்து",
+                testimonial1_text: `"நிதி ஆயோக்குடன் பணியாற்றுவது ஒரு கனவு நனவானது. நான் ஒரு பகுதியாக இருந்த திட்டம் இப்போது நாடு முழுவதும் செயல்படுத்தப்படுகிறது. இந்த அனுபவம் விலைமதிப்பற்றது."`,
+                testimonial2_text: `"தேசிய சைபர் செக்யூரிட்டி அலுவலகத்தில் நான் பெற்ற வழிகாட்டுதல் உலகத் தரம் வாய்ந்தது. நான் 2 வருட கல்லூரியை விட 6 மாதங்களில் அதிகம் கற்றுக்கொண்டேன்."`,
+                footer_text: "© 2025 இந்திய அரசு. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை."
+            },
+            te: {
+                logo_title: "ఇంటర్న్‌రెకో",
+                nav_home: "హోమ్",
+                nav_find: "ఇంటర్న్‌షిప్‌లను కనుగొనండి",
+                hero_title: "ప్రధాన ఇంటర్న్‌షిప్‌లకు మీ గేట్‌వే",
+                hero_subtitle: "ఇంటర్న్‌రెకో ప్రధాన మంత్రి ఇంటర్న్‌షిప్ పథకంలో ప్రతిష్టాత్మక అవకాశాలతో మీ నైపుణ్యాలను తెలివిగా సరిపోలుస్తుంది, అధిక-ప్రభావ కెరీర్‌కు మీ మార్గాన్ని సులభతరం చేస్తుంది.",
+                hero_cta: "మీ ఇంటర్న్‌షిప్‌ను కనుగొనండి",
+                scheme_title: "ప్రధాన మంత్రి ఇంటర్న్‌షిప్ పథకం",
+                why_join_title: "పథకంలో ఎందుకు చేరాలి?",
+                feature1_title: "జాతీయ ప్రభావం",
+                feature1_desc: "జాతీయ విధానాలు మరియు డిజిటల్ మౌలిక సదుపాయాలకు నేరుగా దోహదపడే ప్రాజెక్టులపై పని చేయండి.",
+                feature2_title: "నిపుణుల మార్గదర్శకత్వం",
+                feature2_desc: "వివిధ ప్రభుత్వ మంత్రిత్వ శాఖలలోని ప్రముఖ నిపుణులు మరియు విధాన రూపకర్తల నుండి నేర్చుకోండి మరియు మార్గనిర్దేశం చేయండి.",
+                feature3_title: "నైపుణ్యాభివృద్ధి",
+                feature3_desc: "AI, సైబర్‌ సెక్యూరిటీ మరియు డేటా సైన్స్ వంటి అత్యాధునిక డొమైన్‌లలో ప్రత్యక్ష అనుభవాన్ని పొందండి.",
+                how_it_works_title: "మీ ప్రయాణం ఇక్కడ ప్రారంభమవుతుంది",
+                step1_title: "మీ నైపుణ్యాలను ఎంచుకోండి",
+                step1_desc: "మా టెక్ డొమైన్‌ల సమగ్ర జాబితా నుండి మీ నైపుణ్యం ఉన్న ప్రాంతాలను ఎంచుకోండి.",
+                step2_title: "సిఫార్సులను పొందండి",
+                step2_desc: "మీ ప్రొఫైల్‌కు సరిగ్గా సరిపోయే ఇంటర్న్‌షిప్ అవకాశాల అనుకూలీకరించిన జాబితాను స్వీకరించండి.",
+                step3_title: "సిద్ధం కండి మరియు దరఖాస్తు చేసుకోండి",
+                step3_desc: "ఇంటర్వ్యూలకు సిద్ధం కావడానికి మరియు మీ కెరీర్‌లో తదుపరి అడుగు వేయడానికి మా AI సాధనాలను ఉపయోగించండి.",
+                domains_title: "ఫీచర్ చేసిన డొమైన్‌లను అన్వేషించండి",
+                domain_tab_ai: "కృత్రిమ మేధస్సు",
+                domain_tab_cloud: "క్లౌడ్ కంప్యూటింగ్",
+                domain_tab_ds: "డేటా సైన్స్",
+                domain_tab_ml: "యంత్ర అభ్యాసం",
+                domain_tab_video: "వీడియో ఎడిటింగ్",
+                ai_content_title: "కృత్రిమ మేధస్సు",
+                ai_content_desc: "AI అనేది యంత్రాలలో మానవ మేధస్సు యొక్క అనుకరణ. ఈ పథకంలో, మీరు ప్రజా సేవలను మెరుగుపరచడానికి, ప్రక్రియలను స్వయంచాలకం చేయడానికి మరియు విధానాన్ని తెలియజేయడానికి AI ని ఉపయోగించే ప్రాజెక్టులపై పని చేస్తారు. AI లో నైపుణ్యం సాధించడం టెక్, పరిశోధన మరియు పాలనలో అధిక-డిమాండ్ ఉన్న పాత్రలకు తలుపులు తెరుస్తుంది, ఇది మిమ్మల్ని భవిష్యత్ ఉద్యోగ విపణిలో ఒక విలువైన ఆస్తిగా చేస్తుంది.",
+                cloud_content_title: "క్లౌడ్ కంప్యూటింగ్",
+                cloud_content_desc: "క్లౌడ్ కంప్యూటింగ్ ఇంటర్నెట్‌లో ఆన్-డిమాండ్ కంప్యూటింగ్ సేవలను అందిస్తుంది. డిజి లాకర్ వంటి జాతీయ ప్రాజెక్టులకు శక్తినిచ్చే డిజిటల్ మౌలిక సదుపాయాలను నిర్వహించడానికి మరియు స్కేల్ చేయడానికి ఇంటర్న్‌లు సహాయపడతారు. AWS మరియు అజూర్ వంటి క్లౌడ్ ప్లాట్‌ఫారమ్‌లలో నైపుణ్యం ఆధునిక IT ల్యాండ్‌స్కేప్‌లో అత్యంత కోరదగిన నైపుణ్యాలలో ఒకటి.",
+                ds_content_title: "డేటా సైన్స్",
+                ds_content_desc: "డేటా సైన్స్ పెద్ద డేటాసెట్ల నుండి అంతర్దృష్టులు మరియు జ్ఞానాన్ని సంగ్రహించడాన్ని కలిగి ఉంటుంది. ప్రభుత్వ విధానాన్ని తీర్చిదిద్దగల పోకడలను గుర్తించడానికి మీరు జాతీయ-స్థాయి డేటాను విశ్లేషిస్తారు. డేటా-ఆధారిత నిర్ణయాలు తీసుకోవాలనుకునే ఏ సంస్థకైనా ఈ నైపుణ్యం చాలా ముఖ్యమైనది, ఇది మిమ్మల్ని సమాచార ఆర్థిక వ్యవస్థలో ముందంజలో ఉంచుతుంది.",
+                ml_content_title: "యంత్ర అభ్యాసం",
+                ml_content_desc: "AI యొక్క ఉపసమితి, యంత్ర అభ్యాసం కంప్యూటర్లు డేటా నుండి నేర్చుకోవడానికి అనుమతించే అల్గారిథమ్‌లను రూపొందించడంపై దృష్టి పెడుతుంది. మీరు వ్యవసాయం, రక్షణ లేదా ఆరోగ్య సంరక్షణ కోసం ప్రిడిక్టివ్ మోడళ్లపై పని చేయవచ్చు. ఈ స్పెషలైజేషన్ చాలా విలువైనది మరియు అన్ని పరిశ్రమలలో తెలివైన, ప్రిడిక్టివ్ అప్లికేషన్‌లను రూపొందించడంలో కెరీర్‌లకు దారితీస్తుంది.",
+                video_content_title: "వీడియో ఎడిటింగ్",
+                video_content_desc: "వీడియో ఎడిటింగ్ అనేది విజువల్ మీడియా ద్వారా కథ చెప్పే కళ. ఈ పథకంలో, మీరు డిజిటల్ ఇండియా వంటి ప్రధాన జాతీయ ప్రచారాల కోసం ఆకర్షణీయమైన వీడియో కంటెంట్‌ను సృష్టిస్తారు. మార్కెటింగ్, మీడియా మరియు పబ్లిక్ రిలేషన్స్‌లో పాత్రల కోసం ఆధునిక ఉద్యోగ విపణిలో బలమైన విజువల్ కమ్యూనికేషన్ నైపుణ్యాలు అవసరం.",
+                testimonials_title: "మా ఇంటర్న్‌ల నుండి",
+                testimonial1_text: `"నీతి ఆయోగ్‌తో పనిచేయడం ఒక కల నిజమైనది. నేను ఒక భాగంగా ఉన్న ప్రాజెక్ట్ ఇప్పుడు దేశవ్యాప్తంగా అమలు చేయబడుతోంది. ఈ అనుభవం అమూల్యమైనది."`,
+                testimonial2_text: `"జాతీయ సైబర్ సెక్యూరిటీ కార్యాలయంలో నేను పొందిన మార్గదర్శకత్వం ప్రపంచ స్థాయిది. నేను 2 సంవత్సరాల కళాశాల కంటే 6 నెలల్లో ఎక్కువ నేర్చుకున్నాను."`,
+                footer_text: "© 2025 భారత ప్రభుత్వం. సర్వ హక్కులు ప్రత్యేకించబడినవి."
+            },
+
+            ml: {
+                logo_title: "ഇന്റേൺറെക്കോ",
+                nav_home: "ഹോം",
+                nav_find: "ഇന്റേൺഷിപ്പുകൾ കണ്ടെത്തുക",
+                hero_title: "പ്രീമിയർ ഇന്റേൺഷിപ്പുകളിലേക്കുള്ള നിങ്ങളുടെ കവാടം",
+                hero_subtitle: "പ്രധാനമന്ത്രിയുടെ ഇന്റേൺഷിപ്പ് സ്കീമിലെ അഭിമാനകരമായ അവസരങ്ങളുമായി നിങ്ങളുടെ കഴിവുകളെ ഇന്റേൺറെക്കോ ബുദ്ധിപരമായി പൊരുത്തപ്പെടുത്തുന്നു, ഉയർന്ന സ്വാധീനമുള്ള ഒരു കരിയറിലേക്കുള്ള നിങ്ങളുടെ പാത ലളിതമാക്കുന്നു.",
+                hero_cta: "നിങ്ങളുടെ ഇന്റേൺഷിപ്പ് കണ്ടെത്തുക",
+                scheme_title: "പ്രധാനമന്ത്രി ഇന്റേൺഷിപ്പ് സ്കീം",
+                why_join_title: "പദ്ധതിയിൽ എന്തുകൊണ്ട് ചേരണം?",
+                feature1_title: "ദേശീയ സ്വാധീനം",
+                feature1_desc: "ദേശീയ നയങ്ങൾക്കും ഡിജിറ്റൽ ഇൻഫ്രാസ്ട്രക്ചറിനും നേരിട്ട് സംഭാവന നൽകുന്ന പ്രോജക്റ്റുകളിൽ പ്രവർത്തിക്കുക.",
+                feature2_title: "വിദഗ്ദ്ധ മാർഗ്ഗനിർദ്ദേശം",
+                feature2_desc: "വിവിധ സർക്കാർ മന്ത്രാലയങ്ങളിലെ പ്രമുഖ വിദഗ്ദ്ധരിൽ നിന്നും നയരൂപീകരണക്കാരിൽ നിന്നും പഠിക്കുകയും മാർഗ്ഗനിർദ്ദേശം നേടുകയും ചെയ്യുക.",
+                feature3_title: "നൈപുണ്യ വികസനം",
+                feature3_desc: "എഐ, സൈബർ സുരക്ഷ, ഡാറ്റാ സയൻസ് തുടങ്ങിയ അത്യാധുനിക ഡൊമെയ്‌നുകളിൽ പ്രായോഗിക അനുഭവം നേടുക.",
+                how_it_works_title: "നിങ്ങളുടെ യാത്ര ഇവിടെ ആരംഭിക്കുന്നു",
+                step1_title: "നിങ്ങളുടെ കഴിവുകൾ തിരഞ്ഞെടുക്കുക",
+                step1_desc: "ഞങ്ങളുടെ സാങ്കേതിക ഡൊമെയ്‌നുകളുടെ സമഗ്രമായ ലിസ്റ്റിൽ നിന്ന് നിങ്ങളുടെ വൈദഗ്ധ്യമുള്ള മേഖലകൾ തിരഞ്ഞെടുക്കുക.",
+                step2_title: "ശുപാർശകൾ നേടുക",
+                step2_desc: "നിങ്ങളുടെ പ്രൊഫൈലുമായി തികച്ചും പൊരുത്തപ്പെടുന്ന ഇന്റേൺഷിപ്പ് അവസരങ്ങളുടെ ഒരു അനുയോജ്യമായ ലിസ്റ്റ് സ്വീകരിക്കുക.",
+                step3_title: "തയ്യാറാകുകയും അപേക്ഷിക്കുകയും ചെയ്യുക",
+                step3_desc: "അഭിമുഖങ്ങൾക്ക് തയ്യാറെടുക്കുന്നതിനും നിങ്ങളുടെ കരിയറിൽ അടുത്ത ഘട്ടം എടുക്കുന്നതിനും ഞങ്ങളുടെ എഐ ടൂളുകൾ ഉപയോഗിക്കുക.",
+                domains_title: "തിരഞ്ഞെടുത്ത ഡൊമെയ്‌നുകൾ പര്യവേക്ഷണം ചെയ്യുക",
+                domain_tab_ai: "ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസ്",
+                domain_tab_cloud: "ക്ലൗഡ് കമ്പ്യൂട്ടിംഗ്",
+                domain_tab_ds: "ഡാറ്റാ സയൻസ്",
+                domain_tab_ml: "മെഷീൻ ലേണിംഗ്",
+                domain_tab_video: "വീഡിയോ എഡിറ്റിംഗ്",
+                ai_content_title: "ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസ്",
+                ai_content_desc: "എഐ എന്നത് യന്ത്രങ്ങളിൽ മനുഷ്യബുദ്ധിയുടെ ഒരു സിമുലേഷനാണ്. ഈ സ്കീമിൽ, പൊതു സേവനങ്ങൾ മെച്ചപ്പെടുത്തുന്നതിനും പ്രക്രിയകൾ ഓട്ടോമേറ്റ് ചെയ്യുന്നതിനും നയത്തെ അറിയിക്കുന്നതിനും എഐ ഉപയോഗിക്കുന്ന പ്രോജക്റ്റുകളിൽ നിങ്ങൾ പ്രവർത്തിക്കും. എഐയിൽ വൈദഗ്ദ്ധ്യം നേടുന്നത് സാങ്കേതികവിദ്യ, ഗവേഷണം, ഭരണം എന്നിവയിലെ ഉയർന്ന ഡിമാൻഡുള്ള റോളുകളിലേക്ക് വാതിലുകൾ തുറക്കുന്നു, ഇത് നിങ്ങളെ ഭാവിയിലെ തൊഴിൽ വിപണിയിൽ ഒരു വിലയേറിയ ആസ്തിയാക്കുന്നു.",
+                cloud_content_title: "ക്ലൗഡ് കമ്പ്യൂട്ടിംഗ്",
+                cloud_content_desc: "ക്ലൗഡ് കമ്പ്യൂട്ടിംഗ് ഇന്റർനെറ്റിലൂടെ ആവശ്യാനുസരണം കമ്പ്യൂട്ടിംഗ് സേവനങ്ങൾ നൽകുന്നു. ഡിജി ലോക്കർ പോലുള്ള ദേശീയ പ്രോജക്റ്റുകൾക്ക് ശക്തി പകരുന്ന ഡിജിറ്റൽ ഇൻഫ്രാസ്ട്രക്ചർ നിയന്ത്രിക്കുന്നതിനും സ്കെയിൽ ചെയ്യുന്നതിനും ഇന്റേണുകൾ സഹായിക്കും. എഡബ്ല്യുഎസ്, അസൂർ പോലുള്ള ക്ലൗഡ് പ്ലാറ്റ്‌ഫോമുകളിലെ വൈദഗ്ദ്ധ്യം ആധുനിക ഐടി ലാൻഡ്‌സ്‌കേപ്പിൽ ഏറ്റവും കൂടുതൽ ആവശ്യപ്പെടുന്ന കഴിവുകളിലൊന്നാണ്.",
+                ds_content_title: "ഡാറ്റാ സയൻസ്",
+                ds_content_desc: "വലിയ ഡാറ്റാസെറ്റുകളിൽ നിന്ന് ഉൾക്കാഴ്ചകളും അറിവും വേർതിരിച്ചെടുക്കുന്നത് ഡാറ്റാ സയൻസിൽ ഉൾപ്പെടുന്നു. സർക്കാർ നയത്തെ രൂപപ്പെടുത്താൻ കഴിയുന്ന പ്രവണതകൾ തിരിച്ചറിയാൻ നിങ്ങൾ ദേശീയ തലത്തിലുള്ള ഡാറ്റ വിശകലനം ചെയ്യും. ഡാറ്റാധിഷ്ഠിത തീരുമാനങ്ങൾ എടുക്കാൻ ആഗ്രഹിക്കുന്ന ഏതൊരു ഓർഗനൈസേഷനും ഈ വൈദഗ്ദ്ധ്യം നിർണായകമാണ്, ഇത് നിങ്ങളെ വിവര സമ്പദ്‌വ്യവസ്ഥയുടെ മുൻ‌നിരയിൽ നിർത്തുന്നു.",
+                ml_content_title: "മെഷീൻ ലേണിംഗ്",
+                ml_content_desc: "എഐയുടെ ഒരു ഉപവിഭാഗമായ മെഷീൻ ലേണിംഗ്, ഡാറ്റയിൽ നിന്ന് പഠിക്കാൻ കമ്പ്യൂട്ടറുകളെ അനുവദിക്കുന്ന അൽഗോരിതങ്ങൾ നിർമ്മിക്കുന്നതിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കുന്നു. നിങ്ങൾക്ക് കൃഷി, പ്രതിരോധം, അല്ലെങ്കിൽ ആരോഗ്യ സംരക്ഷണം എന്നിവയ്ക്കായി പ്രവചന മാതൃകകളിൽ പ്രവർത്തിക്കാം. ഈ സ്പെഷ്യലൈസേഷൻ വളരെ മൂല്യവത്താണ്, കൂടാതെ എല്ലാ വ്യവസായങ്ങളിലും ബുദ്ധിപരവും പ്രവചനാത്മകവുമായ ആപ്ലിക്കേഷനുകൾ നിർമ്മിക്കുന്നതിൽ കരിയറിലേക്ക് നയിക്കുന്നു.",
+                video_content_title: "വീഡിയോ എഡിറ്റിംഗ്",
+                video_content_desc: "ദൃശ്യമാധ്യമങ്ങളിലൂടെ കഥ പറയുന്ന കലയാണ് വീഡിയോ എഡിറ്റിംഗ്. ഈ സ്കീമിൽ, ഡിജിറ്റൽ ഇന്ത്യ പോലുള്ള പ്രധാന ദേശീയ കാമ്പെയ്‌നുകൾക്കായി നിങ്ങൾ ആകർഷകമായ വീഡിയോ ഉള്ളടക്കം സൃഷ്ടിക്കും. മാർക്കറ്റിംഗ്, മീഡിയ, പബ്ലിക് റിലേഷൻസ് എന്നിവയിലെ റോളുകൾക്ക് ആധുനിക തൊഴിൽ വിപണിയിൽ ശക്തമായ ദൃശ്യ ആശയവിനിമയ കഴിവുകൾ അത്യാവശ്യമാണ്.",
+                testimonials_title: "ഞങ്ങളുടെ ഇന്റേണുകളിൽ നിന്ന്",
+                testimonial1_text: `"നിതി ആയോഗിനൊപ്പം പ്രവർത്തിക്കുന്നത് ഒരു സ്വപ്ന സാക്ഷാത്കാരമായിരുന്നു. ഞാൻ ഭാഗമായിരുന്ന പ്രോജക്റ്റ് ഇപ്പോൾ രാജ്യവ്യാപകമായി നടപ്പാക്കുന്നു. അനുഭവം അമൂല്യമായിരുന്നു."`,
+                testimonial2_text: `"ദേശീയ സൈബർ സുരക്ഷാ ഓഫീസിൽ എനിക്ക് ലഭിച്ച മാർഗ്ഗനിർദ്ദേശം ലോകോത്തരമായിരുന്നു. 2 വർഷത്തെ കോളേജിനേക്കാൾ 6 മാസത്തിനുള്ളിൽ ഞാൻ കൂടുതൽ പഠിച്ചു."`,
+                footer_text: "© 2025 ഇന്ത്യൻ സർക്കാർ. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം."
+            },
+            kn: {
+                logo_title: "ಇಂಟರ್ನ್‌ರೆಕೊ",
+                nav_home: "ಮುಖಪುಟ",
+                nav_find: "ಇಂಟರ್ನ್‌ಶಿಪ್‌ಗಳನ್ನು ಹುಡುಕಿ",
+                hero_title: "ಪ್ರಧಾನ ಇಂಟರ್ನ್‌ಶಿಪ್‌ಗಳಿಗೆ ನಿಮ್ಮ ಗೇಟ್‌ವೇ",
+                hero_subtitle: "ಇಂಟರ್ನ್‌ರೆಕೊ ಪ್ರಧಾನ ಮಂತ್ರಿ ಇಂಟರ್ನ್‌ಶಿಪ್ ಯೋಜನೆಯಲ್ಲಿ ಪ್ರತಿಷ್ಠಿತ ಅವಕಾಶಗಳೊಂದಿಗೆ ನಿಮ್ಮ ಕೌಶಲ್ಯಗಳನ್ನು ಬುದ್ಧಿವಂತಿಕೆಯಿಂದ ಹೊಂದಿಸುತ್ತದೆ, ಹೆಚ್ಚಿನ ಪ್ರಭಾವದ ವೃತ್ತಿಜೀವನಕ್ಕೆ ನಿಮ್ಮ ಮಾರ್ಗವನ್ನು ಸರಳಗೊಳಿಸುತ್ತದೆ.",
+                hero_cta: "ನಿಮ್ಮ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅನ್ನು ಹುಡುಕಿ",
+                scheme_title: "ಪ್ರಧಾನ ಮಂತ್ರಿ ಇಂಟರ್ನ್‌ಶಿಪ್ ಯೋಜನೆ",
+                why_join_title: "ಯೋಜನೆಗೆ ಏಕೆ ಸೇರಬೇಕು?",
+                feature1_title: "ರಾಷ್ಟ್ರೀಯ ಪ್ರಭಾವ",
+                feature1_desc: "ರಾಷ್ಟ್ರೀಯ ನೀತಿಗಳು ಮತ್ತು ಡಿಜಿಟಲ್ ಮೂಲಸೌಕರ್ಯಕ್ಕೆ ನೇರವಾಗಿ ಕೊಡುಗೆ ನೀಡುವ ಯೋಜನೆಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡಿ.",
+                feature2_title: "ತಜ್ಞರ ಮಾರ್ಗದರ್ಶನ",
+                feature2_desc: "ವಿವಿಧ ಸರ್ಕಾರಿ ಸಚಿವಾಲಯಗಳಲ್ಲಿನ ಪ್ರಮುಖ ತಜ್ಞರು ಮತ್ತು ನೀತಿ ನಿರೂಪಕರಿಂದ ಕಲಿಯಿರಿ ಮತ್ತು ಮಾರ್ಗದರ್ಶನ ಪಡೆಯಿರಿ.",
+                feature3_title: "ಕೌಶಲ್ಯ ಅಭಿವೃದ್ಧಿ",
+                feature3_desc: "AI, ಸೈಬರ್‌ ಸೆಕ್ಯುರಿಟಿ ಮತ್ತು ಡೇಟಾ ಸೈನ್ಸ್‌ನಂತಹ ಅತ್ಯಾಧುನಿಕ ಡೊಮೇನ್‌ಗಳಲ್ಲಿ ಪ್ರಾಯೋಗಿಕ ಅನುಭವವನ್ನು ಪಡೆಯಿರಿ.",
+                how_it_works_title: "ನಿಮ್ಮ ಪ್ರಯಾಣ ಇಲ್ಲಿಂದ ಪ್ರಾರಂಭವಾಗುತ್ತದೆ",
+                step1_title: "ನಿಮ್ಮ ಕೌಶಲ್ಯಗಳನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+                step1_desc: "ನಮ್ಮ ಟೆಕ್ ಡೊಮೇನ್‌ಗಳ ಸಮಗ್ರ ಪಟ್ಟಿಯಿಂದ ನಿಮ್ಮ ಪರಿಣತಿಯ ಕ್ಷೇತ್ರಗಳನ್ನು ಆರಿಸಿ.",
+                step2_title: "ಶಿಫಾರಸುಗಳನ್ನು ಪಡೆಯಿರಿ",
+                step2_desc: "ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ಗೆ ಸಂಪೂರ್ಣವಾಗಿ ಹೊಂದಿಕೆಯಾಗುವ ಇಂಟರ್ನ್‌ಶಿಪ್ ಅವಕಾಶಗಳ ಅನುಗುಣವಾದ ಪಟ್ಟಿಯನ್ನು ಸ್ವೀಕರಿಸಿ.",
+                step3_title: "ತಯಾರು ಮಾಡಿ ಮತ್ತು ಅನ್ವಯಿಸಿ",
+                step3_desc: "ಸಂದರ್ಶನಗಳಿಗೆ ತಯಾರಾಗಲು ಮತ್ತು ನಿಮ್ಮ ವೃತ್ತಿಜೀವನದಲ್ಲಿ ಮುಂದಿನ ಹೆಜ್ಜೆ ಇಡಲು ನಮ್ಮ AI ಸಾಧನಗಳನ್ನು ಬಳಸಿ.",
+                domains_title: "ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಿದ ಡೊಮೇನ್‌ಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+                domain_tab_ai: "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ",
+                domain_tab_cloud: "ಕ್ಲೌಡ್ ಕಂಪ್ಯೂಟಿಂಗ್",
+                domain_tab_ds: "ಡೇಟಾ ಸೈನ್ಸ್",
+                domain_tab_ml: "ಯಂತ್ರ ಕಲಿಕೆ",
+                domain_tab_video: "ವೀಡಿಯೊ ಸಂಪಾದನೆ",
+                ai_content_title: "ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆ",
+                ai_content_desc: "AI ಎನ್ನುವುದು ಯಂತ್ರಗಳಲ್ಲಿ ಮಾನವ ಬುದ್ಧಿಮತ್ತೆಯ ಅನುಕರಣೆಯಾಗಿದೆ. ಈ ಯೋಜನೆಯಲ್ಲಿ, ನೀವು ಸಾರ್ವಜನಿಕ ಸೇವೆಗಳನ್ನು ಸುಧಾರಿಸಲು, ಪ್ರಕ್ರಿಯೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತಗೊಳಿಸಲು ಮತ್ತು ನೀತಿಯನ್ನು ತಿಳಿಸಲು AI ಬಳಸುವ ಯೋಜನೆಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತೀರಿ. AI ನಲ್ಲಿ ಪರಿಣತಿ ಹೊಂದುವುದು ತಂತ್ರಜ್ಞಾನ, ಸಂಶೋಧನೆ ಮತ್ತು ಆಡಳಿತದಲ್ಲಿ ಹೆಚ್ಚಿನ ಬೇಡಿಕೆಯ ಪಾತ್ರಗಳಿಗೆ ಬಾಗಿಲು ತೆರೆಯುತ್ತದೆ, ಇದು ನಿಮ್ಮನ್ನು ಭವಿಷ್ಯದ ಉದ್ಯೋಗ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಒಂದು ಮೌಲ್ಯಯುತ ಆಸ್ತಿಯನ್ನಾಗಿ ಮಾಡುತ್ತದೆ.",
+                cloud_content_title: "ಕ್ಲೌಡ್ ಕಂಪ್ಯೂಟಿಂಗ್",
+                cloud_content_desc: "ಕ್ಲೌಡ್ ಕಂಪ್ಯೂಟಿಂಗ್ ಇಂಟರ್ನೆಟ್‌ನಲ್ಲಿ ಬೇಡಿಕೆಯ ಮೇರೆಗೆ ಕಂಪ್ಯೂಟಿಂಗ್ ಸೇವೆಗಳನ್ನು ನೀಡುತ್ತದೆ. ಡಿಜಿ ಲಾಕರ್‌ನಂತಹ ರಾಷ್ಟ್ರೀಯ ಯೋಜನೆಗಳಿಗೆ ಶಕ್ತಿ ನೀಡುವ ಡಿಜಿಟಲ್ ಮೂಲಸೌಕರ್ಯವನ್ನು ನಿರ್ವಹಿಸಲು ಮತ್ತು ಅಳೆಯಲು ಇಂಟರ್ನ್‌ಗಳು ಸಹಾಯ ಮಾಡುತ್ತಾರೆ. AWS ಮತ್ತು ಅಜೂರ್‌ನಂತಹ ಕ್ಲೌಡ್ ಪ್ಲಾಟ್‌ಫಾರ್ಮ್‌ಗಳಲ್ಲಿನ ಪರಿಣತಿ ಆಧುನಿಕ ಐಟಿ ಕ್ಷೇತ್ರದಲ್ಲಿ ಅತ್ಯಂತ ಹೆಚ್ಚು ಬೇಡಿಕೆಯಿರುವ ಕೌಶಲ್ಯಗಳಲ್ಲಿ ಒಂದಾಗಿದೆ.",
+                ds_content_title: "ಡೇಟಾ ಸೈನ್ಸ್",
+                ds_content_desc: "ಡೇಟಾ ಸೈನ್ಸ್ ದೊಡ್ಡ ಡೇಟಾಸೆಟ್‌ಗಳಿಂದ ಒಳನೋಟಗಳನ್ನು ಮತ್ತು ಜ್ಞಾನವನ್ನು ಹೊರತೆಗೆಯುವುದನ್ನು ಒಳಗೊಂಡಿರುತ್ತದೆ. ಸರ್ಕಾರಿ ನೀತಿಯನ್ನು ರೂಪಿಸಬಲ್ಲ ಪ್ರವೃತ್ತಿಗಳನ್ನು ಗುರುತಿಸಲು ನೀವು ರಾಷ್ಟ್ರೀಯ ಮಟ್ಟದ ಡೇಟಾವನ್ನು ವಿಶ್ಲೇಷಿಸುತ್ತೀರಿ. ಡೇಟಾ ಆಧಾರಿತ ನಿರ್ಧಾರಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಲು ಬಯಸುವ ಯಾವುದೇ ಸಂಸ್ಥೆಗೆ ಈ ಕೌಶಲ್ಯವು ಪ್ರಮುಖವಾಗಿದೆ, ಇದು ನಿಮ್ಮನ್ನು ಮಾಹಿತಿ ಆರ್ಥಿಕತೆಯ ಮುಂಚೂಣಿಯಲ್ಲಿರಿಸುತ್ತದೆ.",
+                ml_content_title: "ಯಂತ್ರ ಕಲಿಕೆ",
+                ml_content_desc: "AI ನ ಉಪವಿಭಾಗ, ಯಂತ್ರ ಕಲಿಕೆ ಕಂಪ್ಯೂಟರ್‌ಗಳಿಗೆ ಡೇಟಾದಿಂದ ಕಲಿಯಲು ಅನುಮತಿಸುವ ಅಲ್ಗಾರಿದಮ್‌ಗಳನ್ನು ನಿರ್ಮಿಸುವುದರ ಮೇಲೆ ಕೇಂದ್ರೀಕರಿಸುತ್ತದೆ. ನೀವು ಕೃಷಿ, ರಕ್ಷಣಾ ಅಥವಾ ಆರೋಗ್ಯಕ್ಕಾಗಿ ಭವಿಷ್ಯಸೂಚಕ ಮಾದರಿಗಳಲ್ಲಿ ಕೆಲಸ ಮಾಡಬಹುದು. ಈ ವಿಶೇಷತೆಯು ಹೆಚ್ಚು ಮೌಲ್ಯಯುತವಾಗಿದೆ ಮತ್ತು ಎಲ್ಲಾ ಕೈಗಾರಿಕೆಗಳಲ್ಲಿ ಬುದ್ಧಿವಂತ, ಭವಿಷ್ಯಸೂಚಕ ಅಪ್ಲಿಕೇಶನ್‌ಗಳನ್ನು ನಿರ್ಮಿಸುವಲ್ಲಿ ವೃತ್ತಿಜೀವನಕ್ಕೆ ಕಾರಣವಾಗುತ್ತದೆ.",
+                video_content_title: "ವೀಡಿಯೊ ಸಂಪಾದನೆ",
+                video_content_desc: "ವೀಡಿಯೊ ಸಂಪಾದನೆ ದೃಶ್ಯ ಮಾಧ್ಯಮದ ಮೂಲಕ ಕಥೆ ಹೇಳುವ ಕಲೆಯಾಗಿದೆ. ಈ ಯೋಜನೆಯಲ್ಲಿ, ನೀವು ಡಿಜಿಟಲ್ ಇಂಡಿಯಾದಂತಹ ಪ್ರಮುಖ ರಾಷ್ಟ್ರೀಯ ಪ್ರಚಾರಗಳಿಗಾಗಿ ಆಕರ್ಷಕ ವೀಡಿಯೊ ವಿಷಯವನ್ನು ರಚಿಸುತ್ತೀರಿ. ಮಾರ್ಕೆಟಿಂಗ್, ಮಾಧ್ಯಮ ಮತ್ತು ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕಗಳಲ್ಲಿನ ಪಾತ್ರಗಳಿಗಾಗಿ ಆಧುನಿಕ ಉದ್ಯೋಗ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಬಲವಾದ ದೃಶ್ಯ ಸಂವಹನ ಕೌಶಲ್ಯಗಳು ಅಗತ್ಯವಿದೆ.",
+                testimonials_title: "ನಮ್ಮ ಇಂಟರ್ನ್‌ಗಳಿಂದ",
+                testimonial1_text: `"ನೀತಿ ಆಯೋಗದೊಂದಿಗೆ ಕೆಲಸ ಮಾಡುವುದು ಒಂದು ಕನಸು ನನಸಾದಂತಾಗಿದೆ. ನಾನು ಭಾಗವಾಗಿದ್ದ ಯೋಜನೆಯನ್ನು ಈಗ ದೇಶಾದ್ಯಂತ ಜಾರಿಗೊಳಿಸಲಾಗುತ್ತಿದೆ. ಅನುಭವವು ಅಮೂಲ್ಯವಾಗಿತ್ತು."`,
+                testimonial2_text: `"ರಾಷ್ಟ್ರೀಯ ಸೈಬರ್ ಭದ್ರತಾ ಕಚೇರಿಯಲ್ಲಿ ನಾನು ಪಡೆದ ಮಾರ್ಗದರ್ಶನವು ವಿಶ್ವ ದರ್ಜೆಯದ್ದಾಗಿತ್ತು. ನಾನು 2 ವರ್ಷಗಳ ಕಾಲೇಜಿಗಿಂತ 6 ತಿಂಗಳಲ್ಲಿ ಹೆಚ್ಚು ಕಲಿತಿದ್ದೇನೆ."`,
+                footer_text: "© 2025 ಭಾರತ ಸರ್ಕಾರ. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ."
+            },
+
+            bn: {
+                logo_title: "ইন্টার্নরেকো",
+                nav_home: "হোম",
+                nav_find: "ইন্টার্নশিপ খুঁজুন",
+                hero_title: "প্রিমিয়ার ইন্টার্নশিপের জন্য আপনার গেটওয়ে",
+                hero_subtitle: "ইন্টার্নরেকো প্রধানমন্ত্রী ইন্টার্নশিপ স্কিমে মর্যাদাপূর্ণ সুযোগের সাথে আপনার দক্ষতার বুদ্ধিমত্তার সাথে মেলে, একটি উচ্চ-প্রভাবশালী ক্যারিয়ারের জন্য আপনার পথকে সহজ করে তোলে।",
+                hero_cta: "আপনার ইন্টার্নশিপ খুঁজুন",
+                scheme_title: "প্রধানমন্ত্রী ইন্টার্নশিপ স্কিম",
+                why_join_title: "স্কিমে কেন যোগ দেবেন?",
+                feature1_title: "জাতীয় প্রভাব",
+                feature1_desc: "জাতীয় নীতি এবং ডিজিটাল অবকাঠামোতে সরাসরি অবদান রাখে এমন প্রকল্পগুলিতে কাজ করুন।",
+                feature2_title: "বিশেষজ্ঞ পরামর্শ",
+                feature2_desc: "বিভিন্ন সরকারী মন্ত্রণালয়ের নেতৃস্থানীয় বিশেষজ্ঞ এবং নীতি নির্ধারকদের কাছ থেকে শিখুন এবং নির্দেশিত হন।",
+                feature3_title: "দক্ষতা উন্নয়ন",
+                feature3_desc: "এআই, সাইবারসিকিউরিটি এবং ডেটা সায়েন্সের মতো অত্যাধুনিক ডোমেনে হাতে-কলমে অভিজ্ঞতা অর্জন করুন।",
+                how_it_works_title: "আপনার যাত্রা এখান থেকে শুরু হয়",
+                step1_title: "আপনার দক্ষতা নির্বাচন করুন",
+                step1_desc: "আমাদের প্রযুক্তি ডোমেনের বিস্তৃত তালিকা থেকে আপনার দক্ষতার ক্ষেত্রগুলি চয়ন করুন।",
+                step2_title: "সুপারিশ পান",
+                step2_desc: "আপনার প্রোফাইলের সাথে পুরোপুরি মেলে এমন ইন্টার্নশিপ সুযোগগুলির একটি উপযুক্ত তালিকা গ্রহণ করুন।",
+                step3_title: "প্রস্তুত হন এবং আবেদন করুন",
+                step3_desc: "সাক্ষাত্কারের জন্য প্রস্তুত হতে এবং আপনার কর্মজীবনে পরবর্তী পদক্ষেপ নিতে আমাদের এআই সরঞ্জামগুলি ব্যবহার করুন।",
+                domains_title: "বৈশিষ্ট্যযুক্ত ডোমেনগুলি অন্বেষণ করুন",
+                domain_tab_ai: "কৃত্রিম বুদ্ধিমত্তা",
+                domain_tab_cloud: "ক্লাউড কম্পিউটিং",
+                domain_tab_ds: "ডেটা সায়েন্স",
+                domain_tab_ml: "মেশিন লার্নিং",
+                domain_tab_video: "ভিডিও এডিটিং",
+                ai_content_title: "কৃত্রিম বুদ্ধিমত্তা",
+                ai_content_desc: "এআই হল মেশিনে মানুষের বুদ্ধিমত্তার অনুকরণ। এই স্কিমে, আপনি এমন প্রকল্পগুলিতে কাজ করবেন যা জনসেবা উন্নত করতে, প্রক্রিয়াগুলি স্বয়ংক্রিয় করতে এবং নীতি জানাতে এআই ব্যবহার করে। এআই-তে দক্ষতা অর্জন প্রযুক্তি, গবেষণা এবং প্রশাসনে উচ্চ-চাহিদা সম্পন্ন ভূমিকার দরজা খুলে দেয়, যা আপনাকে ভবিষ্যতের চাকরির বাজারে একটি মূল্যবান সম্পদ করে তোলে।",
+                cloud_content_title: "ক্লাউড কম্পিউটিং",
+                cloud_content_desc: "ক্লাউড কম্পিউটিং ইন্টারনেটের মাধ্যমে অন-ডিমান্ড কম্পিউটিং পরিষেবা সরবরাহ করে। ইন্টার্নরা ডিজি লকারের মতো জাতীয় প্রকল্পগুলিকে শক্তিশালী করে এমন ডিজিটাল অবকাঠামো পরিচালনা ও স্কেল করতে সহায়তা করবে। এডাব্লুএস এবং অ্যাজুরের মতো ক্লাউড প্ল্যাটফর্মগুলিতে দক্ষতা আধুনিক আইটি ল্যান্ডস্কেপে সর্বাধিক সন্ধান করা দক্ষতাগুলির মধ্যে একটি।",
+                ds_content_title: "ডেটা সায়েন্স",
+                ds_content_desc: "ডেটা সায়েন্স বড় ডেটাসেট থেকে অন্তর্দৃষ্টি এবং জ্ঞান আহরণ জড়িত। আপনি সরকারী নীতিকে রূপ দিতে পারে এমন প্রবণতা সনাক্ত করতে জাতীয়-স্তরের ডেটা বিশ্লেষণ করবেন। ডেটা-চালিত সিদ্ধান্ত নিতে চায় এমন যেকোনো সংস্থার জন্য এই দক্ষতাটি গুরুত্বপূর্ণ, যা আপনাকে তথ্য অর্থনীতির অগ্রভাগে রাখে।",
+                ml_content_title: "মেশিন লার্নিং",
+                ml_content_desc: "এআই-এর একটি উপসেট, মেশিন লার্নিং অ্যালগরিদম তৈরির উপর দৃষ্টি নিবদ্ধ করে যা কম্পিউটারকে ডেটা থেকে শিখতে দেয়। আপনি কৃষি, প্রতিরক্ষা বা স্বাস্থ্যসেবার জন্য ভবিষ্যদ্বাণীমূলক মডেলগুলিতে কাজ করতে পারেন। এই বিশেষীকরণটি অত্যন্ত মূল্যবান এবং সমস্ত শিল্প জুড়ে বুদ্ধিমান, ভবিষ্যদ্বাণীমূলক অ্যাপ্লিকেশন তৈরিতে ক্যারিয়ারের দিকে পরিচালিত করে।",
+                video_content_title: "ভিডিও এডিটিং",
+                video_content_desc: "ভিডিও এডিটিং হল ভিজ্যুয়াল মিডিয়ার মাধ্যমে গল্প বলার শিল্প। এই স্কিমে, আপনি ডিজিটাল ইন্ডিয়ার মতো প্রধান জাতীয় প্রচারণার জন্য আকর্ষণীয় ভিডিও সামগ্রী তৈরি করবেন। বিপণন, মিডিয়া এবং জনসংযোগের ভূমিকার জন্য আধুনিক চাকরির বাজারে শক্তিশালী ভিজ্যুয়াল যোগাযোগ দক্ষতা অপরিহার্য।",
+                testimonials_title: "আমাদের ইন্টার্নদের থেকে",
+                testimonial1_text: `"নীতি আয়োগের সাথে কাজ করা একটি স্বপ্ন সত্যি হওয়ার মতো ছিল। আমি যে প্রকল্পের অংশ ছিলাম, তা এখন দেশব্যাপী বাস্তবায়িত হচ্ছে। অভিজ্ঞতাটি অমূল্য ছিল।"`,
+                testimonial2_text: `"জাতীয় সাইবার নিরাপত্তা অফিসে আমি যে পরামর্শ পেয়েছি তা বিশ্বমানের ছিল। আমি 2 বছরের কলেজের চেয়ে 6 মাসে বেশি শিখেছি।"`,
+                footer_text: "© 2025 ভারত সরকার। সর্বস্বত্ব সংরক্ষিত।"
+            }
+        };
+
+        const langMap = {
+            en: 'English',
+            hi: 'हिन्दी',
+            mr: 'मराठी',
+            ta: 'தமிழ்',
+            te: 'తెలుగు',
+            ml: 'മലയാളം',
+            kn: 'ಕನ್ನಡ',
+            bn: 'বাংলা'
+        };
+
+        function setLanguage(lang) {
+            document.getElementById('currentLangText').textContent = langMap[lang] || 'English';
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-translate-key]').forEach(el => {
+                const key = el.dataset.translateKey;
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            localStorage.setItem('language', lang);
+        }
+
+        const languageSelector = document.getElementById('languageSelector');
+        const languageDropdown = document.getElementById('languageDropdown');
+
+        languageSelector.addEventListener('click', (event) => {
+            event.stopPropagation();
+            languageDropdown.classList.toggle('visible');
+        });
+
+        languageDropdown.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (event.target.tagName === 'A') {
+                setLanguage(event.target.dataset.lang);
+            }
+        });
+
+        window.addEventListener('click', () => {
+            if (languageDropdown.classList.contains('visible')) {
+                languageDropdown.classList.remove('visible');
+            }
+        });
+
+        const initialLang = localStorage.getItem('language') || 'en';
+        setLanguage(initialLang);
+
+        const domainTabsContainer = document.getElementById('domainTabs');
+        const domainContentPanels = document.getElementById('domainContentPanels');
+
+        domainTabsContainer.addEventListener('click', (event) => {
+            const clickedTab = event.target.closest('.domain-tab');
+            if (!clickedTab) return;
+
+            domainTabsContainer.querySelector('.active').classList.remove('active');
+            domainContentPanels.querySelector('.active').classList.remove('active');
+
+            clickedTab.classList.add('active');
+            document.getElementById(clickedTab.dataset.target).classList.add('active');
+        });
+
+        // Chatbot functionality
+        const chatIcon = document.getElementById('chatIcon');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChatBtn = document.getElementById('closeChatBtn');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const sendChatBtn = document.getElementById('sendChatBtn');
+
+        chatIcon.addEventListener('click', () => {
+            chatWindow.classList.toggle('visible');
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWindow.classList.remove('visible');
+        });
+
+        const chatbotResponses = {
+            "what is this scheme": "This is the Prime Minister's Internship Scheme, designed to provide young graduates with opportunities to work on impactful government projects.",
+            "how to apply": "You can find and apply for internships through this portal. Select your skills and preferred location to see recommended opportunities.",
+            "eligibility": "Typically, final year students or recent graduates from recognized universities are eligible. Specific requirements may vary by internship.",
+            "stipend": "Yes, most internships under this scheme offer a competitive monthly stipend. The amount varies depending on the ministry and role.",
+            "duration": "Internship durations can vary, but they are usually between 2 to 6 months.",
+            "default": "I'm sorry, I don't have information on that. You can try asking about eligibility, application process, or duration."
+        };
+
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase();
+            if (message.includes("scheme") || message.includes("what is this")) {
+                return chatbotResponses["what is this scheme"];
+            } else if (message.includes("apply") || message.includes("how to")) {
+                return chatbotResponses["how to apply"];
+            } else if (message.includes("eligible") || message.includes("eligibility")) {
+                return chatbotResponses["eligibility"];
+            } else if (message.includes("stipend") || message.includes("paid")) {
+                return chatbotResponses["stipend"];
+            } else if (message.includes("duration") || message.includes("long")) {
+                return chatbotResponses["duration"];
+            } else {
+                return chatbotResponses["default"];
+            }
+        }
+
+        function addMessage(message, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `chat-message ${sender}`;
+            messageElement.innerHTML = `<p>${message}</p>`;
+            chatBody.appendChild(messageElement);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function handleChat() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                addMessage(userMessage, 'user');
+                chatInput.value = '';
+
+                setTimeout(() => {
+                    const botMessage = getBotResponse(userMessage);
+                    addMessage(botMessage, 'bot');
+                }, 500);
+            }
+        }
+
+        sendChatBtn.addEventListener('click', handleChat);
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                handleChat();
+            }
+        });
+    });
+</script>
 </body>
 </html>
