@@ -243,4 +243,3 @@ class RecommendationEngine:
 
 
 # Instantiate the engine ONCE when Django starts
-engine = RecommendationEngine()
